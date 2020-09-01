@@ -1,0 +1,888 @@
+<?xml version="1.0"?>
+<sdf version='1.6'>
+  <model name='gauthali_vtol'>
+    <link name='base_link'>
+      <pose frame=''>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose frame=''>0.11856 -0.056508 8e-06 0 -0 0</pose>
+        <mass>9.2977</mass>
+        <inertia>
+          <ixx>0.32593</ixx>
+          <ixy>-0.013555</ixy>
+          <ixz>-7.8276e-06</ixz>
+          <iyy>0.52764</iyy>
+          <iyz>-1.5075e-06</iyz>
+          <izz>0.25239</izz>
+        </inertia>
+      </inertial>
+      <collision name='base_link_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://gauthali_vtol/meshes/base_link.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='base_link_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://gauthali_vtol/meshes/base_link.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <link name='gauthali_vtol/imu_link'>
+      <pose>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.015</mass>
+        <inertia>
+          <ixx>1e-05</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1e-05</iyy>
+          <iyz>0</iyz>
+          <izz>1e-05</izz>
+        </inertia>
+      </inertial>
+      <sensor name="imu_sensor" type="imu">
+        <pose>0 0 0 3.141593 0 0</pose>
+        <always_on>1</always_on>
+        <update_rate>1000.0</update_rate>
+      </sensor>
+    </link>
+    <joint name='gauthali_vtol/imu_joint' type='revolute'>
+      <child>gauthali_vtol/imu_link</child>
+      <parent>base_link</parent>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0</upper>
+          <effort>0</effort>
+          <velocity>0</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='left_aileron'>
+      <pose frame=''>0.28599 -0.38 0.006356 1.5708 -0.29369 0</pose>
+      <inertial>
+        <pose frame=''>0.017378 -0.008312 0.45424 0 -0 0</pose>
+        <mass>0.0090385</mass>
+        <inertia>
+          <ixx>0.00063296</ixx>
+          <ixy>3.822e-07</ixy>
+          <ixz>-1.7169e-07</ixz>
+          <iyy>0.00063438</iyy>
+          <iyz>4.2676e-07</iyz>
+          <izz>1.7477e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='left_aileron_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://gauthali_vtol/meshes/left_aileron.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='left_aileron_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://gauthali_vtol/meshes/left_aileron.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='left_aileron_joint' type='revolute'>
+      <child>left_aileron</child>
+      <parent>base_link</parent>
+      <axis>
+        <xyz>1e-06 -1 -4e-06</xyz>
+        <limit>
+          <lower>-0.53</lower>
+          <upper>0.53</upper>
+          <effort>-1</effort>
+          <velocity>-1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='left_ruddervator'>
+      <pose frame=''>1.3278 -0.17783 0.17783 2.3562 -0 0</pose>
+      <inertial>
+        <pose frame=''>0.029088 -0.007151 0.008477 0 -0 0</pose>
+        <mass>0.011825</mass>
+        <inertia>
+          <ixx>0.0002244</ixx>
+          <ixy>3.7585e-10</ixy>
+          <ixz>-1.8506e-06</ixz>
+          <iyy>0.00022971</iyy>
+          <iyz>-5.9334e-09</iyz>
+          <izz>5.7467e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='left_ruddervator_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://gauthali_vtol/meshes/left_ruddervator.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='left_ruddervator_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://gauthali_vtol/meshes/left_ruddervator.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='left_ruddervator_joint' type='revolute'>
+      <child>left_ruddervator</child>
+      <parent>base_link</parent>
+      <axis>
+        <xyz>0 -0.707103 -0.707111</xyz>
+        <limit>
+          <lower>-0.53</lower>
+          <upper>0.53</upper>
+          <effort>-1</effort>
+          <velocity>-1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='right_aileron'>
+      <pose frame=''>0.28599 0.38 0.006356 1.5708 -0.59602 0</pose>
+      <inertial>
+        <pose frame=''>0.017379 -0.008312 -0.45424 0 -0 0</pose>
+        <mass>0.0090385</mass>
+        <inertia>
+          <ixx>0.00063296</ixx>
+          <ixy>3.822e-07</ixy>
+          <ixz>1.716e-07</ixz>
+          <iyy>0.00063439</iyy>
+          <iyz>-4.2675e-07</iyz>
+          <izz>1.7477e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='right_aileron_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://gauthali_vtol/meshes/right_aileron.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='right_aileron_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://gauthali_vtol/meshes/right_aileron.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='right_aileron_joint' type='revolute'>
+      <child>right_aileron</child>
+      <parent>base_link</parent>
+      <axis>
+        <xyz>2e-06 -1 -3e-06</xyz>
+        <limit>
+          <lower>-0.53</lower>
+          <upper>0.53</upper>
+          <effort>1</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='right_ruddervator'>
+      <pose frame=''>1.3278 0.17783 0.17783 2.3562 -0 0</pose>
+      <inertial>
+        <pose frame=''>0.029088 -0.008476 0.007151 0 -0 0</pose>
+        <mass>0.011825</mass>
+        <inertia>
+          <ixx>0.00022439</ixx>
+          <ixy>1.8506e-06</ixy>
+          <ixz>-3.6772e-10</ixz>
+          <iyy>5.7467e-06</iyy>
+          <iyz>-5.9487e-09</iyz>
+          <izz>0.00022971</izz>
+        </inertia>
+      </inertial>
+      <collision name='right_ruddervator_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://gauthali_vtol/meshes/right_ruddervator.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='right_ruddervator_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://gauthali_vtol/meshes/right_ruddervator.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='right_ruddervator_joint' type='revolute'>
+      <child>right_ruddervator</child>
+      <parent>base_link</parent>
+      <axis>
+        <xyz>0 -0.707111 0.707103</xyz>
+        <limit>
+          <lower>-0.53</lower>
+          <upper>0.53</upper>
+          <effort>-1</effort>
+          <velocity>-1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='rotor_0'>
+      <pose frame=''>-0.564 0.35355 0.006413 1.5708 -0 0.011221</pose>
+      <inertial>
+        <pose frame=''>-0 0.015147 0 0 -0 0</pose>
+        <mass>0.067297</mass>
+        <inertia>
+          <ixx>0.0014426</ixx>
+          <ixy>9.0561e-13</ixy>
+          <ixz>6.2334e-05</ixz>
+          <iyy>0.0014525</iyy>
+          <iyz>-9.2603e-13</iyz>
+          <izz>1.1315e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='rotor_0_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://gauthali_vtol/meshes/rotor_0.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='rotor_0_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://gauthali_vtol/meshes/rotor_0.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='rotor_0_joint' type='revolute'>
+      <child>rotor_0</child>
+      <parent>base_link</parent>
+      <axis>
+        <xyz>0 -4e-06 1</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='rotor_1'>
+      <pose frame=''>0.836 -0.35355 0.006413 1.5708 -0 -3.1388</pose>
+      <inertial>
+        <pose frame=''>-0 0.015147 0 0 -0 0</pose>
+        <mass>0.067297</mass>
+        <inertia>
+          <ixx>0.0014426</ixx>
+          <ixy>9.1437e-13</ixy>
+          <ixz>6.2334e-05</ixz>
+          <iyy>0.0014525</iyy>
+          <iyz>-9.5513e-13</iyz>
+          <izz>1.1315e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='rotor_1_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://gauthali_vtol/meshes/rotor_1.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='rotor_1_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://gauthali_vtol/meshes/rotor_1.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='rotor_1_joint' type='revolute'>
+      <child>rotor_1</child>
+      <parent>base_link</parent>
+      <axis>
+        <xyz>-0 4e-06 1</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='rotor_2'>
+      <pose frame=''>-0.564 -0.35355 0.006413 1.5708 -0 -0.091662</pose>
+      <inertial>
+        <pose frame=''>0 0.015147 -0 0 -0 0</pose>
+        <mass>0.0672986</mass>
+        <inertia>
+          <ixx>0.00144267</ixx>
+          <ixy>-2.29424e-13</ixy>
+          <ixz>-6.23319e-05</ixz>
+          <iyy>0.0014526</iyy>
+          <iyz>9.36363e-12</iyz>
+          <izz>1.13152e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='rotor_2_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://gauthali_vtol/meshes/rotor_2.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='rotor_2_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://gauthali_vtol/meshes/rotor_2.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='rotor_2_joint' type='revolute'>
+      <child>rotor_2</child>
+      <parent>base_link</parent>
+      <axis>
+        <xyz>-0 -4e-06 1</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='rotor_3'>
+      <pose frame=''>0.836 0.35355 0.006413 1.5708 -0 -3.1164</pose>
+      <inertial>
+        <pose frame=''>0 0.015147 0 0 -0 0</pose>
+        <mass>0.067298</mass>
+        <inertia>
+          <ixx>0.0014426</ixx>
+          <ixy>3.0472e-13</ixy>
+          <ixz>-6.2331e-05</ixz>
+          <iyy>0.0014526</iyy>
+          <iyz>2.8078e-13</iyz>
+          <izz>1.1315e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='rotor_3_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://gauthali_vtol/meshes/rotor_3.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='rotor_3_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://gauthali_vtol/meshes/rotor_3.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='rotor_3_joint' type='revolute'>
+      <child>rotor_3</child>
+      <parent>base_link</parent>
+      <axis>
+        <xyz>-0 4e-06 1</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='rotor_pusher'>
+      <pose frame=''>0.50018 0 -0.058605 -0 -1.2758 1.5708</pose>
+      <inertial>
+        <pose frame=''>0 -0.0128 -0 0 -0 0</pose>
+        <mass>0.18697</mass>
+        <inertia>
+          <ixx>0.004287</ixx>
+          <ixy>-2.3985e-11</ixy>
+          <ixz>0.0009704</ixz>
+          <iyy>0.0045337</iyy>
+          <iyz>-4.8833e-11</iyz>
+          <izz>0.00025725</izz>
+        </inertia>
+      </inertial>
+      <collision name='rotor_pusher_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://gauthali_vtol/meshes/rotor_pusher.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='rotor_pusher_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://gauthali_vtol/meshes/rotor_pusher.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='rotor_pusher_joint' type='revolute'>
+      <child>rotor_pusher</child>
+      <parent>base_link</parent>
+      <axis>
+        <xyz>-1 -4e-06 -0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <plugin name="left_wing" filename="libLiftDragPlugin.so">
+      <a0>0.156575426451136</a0>
+      <cla>5.15662015617741</cla>
+      <cda>0.401070456591576</cda>
+      <cma>-1.2</cma>
+      <alpha_stall>0.357288290430484</alpha_stall>
+      <cla_stall>-3.85</cla_stall>
+      <cda_stall>-0.9233984055</cda_stall>
+      <cma_stall>0</cma_stall>
+      <cp>0.166 -0.55 0</cp>
+      <area>0.395</area>
+      <air_density>1.2041</air_density>
+      <forward>-1 0 0</forward>
+      <upward>0 0 1</upward>
+      <link_name>base_link</link_name>
+      <control_joint_name>
+        left_aileron_joint
+      </control_joint_name>
+      <control_joint_rad_to_cl>-0.5</control_joint_rad_to_cl>
+    </plugin>
+    <plugin name="right_wing" filename="libLiftDragPlugin.so">
+      <a0>0.156575426451136</a0>
+      <cla>5.15662015617741</cla>
+      <cda>0.401070456591576</cda>
+      <cma>-1.2</cma>
+      <alpha_stall>0.357288290430484</alpha_stall>
+      <cla_stall>-3.85</cla_stall>
+      <cda_stall>-0.9233984055</cda_stall>
+      <cma_stall>0</cma_stall>
+      <cp>0.166 0.55 0</cp>
+      <area>0.395</area>
+      <air_density>1.2041</air_density>
+      <forward>-1 0 0</forward>
+      <upward>0 0 1</upward>
+      <link_name>base_link</link_name>
+      <control_joint_name>
+        right_aileron_joint
+      </control_joint_name>
+      <control_joint_rad_to_cl>-0.5</control_joint_rad_to_cl>
+    </plugin>
+    <plugin name="left_tail" filename="libLiftDragPlugin.so">
+      <a0>0</a0>
+      <cla>3.10543124960906</cla>
+      <cda>0.269290163711487</cda>
+      <cma>-1.2</cma>
+      <alpha_stall>0.349065850398866</alpha_stall>
+      <cla_stall>-3.85</cla_stall>
+      <cda_stall>-0.9233984055</cda_stall>
+      <cma_stall>0</cma_stall>
+      <cp>1.25 -0.1414 0.2021</cp>
+      <area>0.075</area>
+      <air_density>1.2041</air_density>
+      <forward>-1 0 0</forward>
+      <upward>0 -0.707 0.707</upward>
+      <link_name>base_link</link_name>
+      <control_joint_name>
+        left_ruddervator_joint
+      </control_joint_name>
+      <control_joint_rad_to_cl>-4.0</control_joint_rad_to_cl>
+    </plugin>
+    <plugin name="right_tail" filename="libLiftDragPlugin.so">
+      <a0>0</a0>
+      <cla>3.10543124960906</cla>
+      <cda>0.269290163711487</cda>
+      <cma>-1.2</cma>
+      <alpha_stall>0.349065850398866</alpha_stall>
+      <cla_stall>-3.85</cla_stall>
+      <cda_stall>-0.9233984055</cda_stall>
+      <cma_stall>0</cma_stall>
+      <cp>1.25 0.1414 0.2021</cp>
+      <area>0.075</area>
+      <air_density>1.2041</air_density>
+      <forward>-1 0 0</forward>
+      <upward>0 0.707 0.707</upward>
+      <link_name>base_link</link_name>
+      <control_joint_name>
+        right_ruddervator_joint
+      </control_joint_name>
+      <control_joint_rad_to_cl>-4.0</control_joint_rad_to_cl>
+    </plugin>
+    <plugin name="pusher_blade_1" filename="libLiftDragPlugin.so">
+      <a0>0.30</a0>
+      <alpha_stall>1.4</alpha_stall>
+      <cla>4.2500</cla>
+      <cda>0.10</cda>
+      <cma>0.00</cma>
+      <cla_stall>-0.025</cla_stall>
+      <cda_stall>0.0</cda_stall>
+      <cma_stall>0.0</cma_stall>
+      <area>0.01</area>
+      <air_density>1.2041</air_density>
+      <cp>0 0 0.093</cp>
+      <forward>1 0 0</forward>
+      <upward>0 1 0</upward>
+      <link_name>rotor_pusher</link_name>
+    </plugin>
+    <plugin name="pusher_blade_2" filename="libLiftDragPlugin.so">
+      <a0>0.30</a0>
+      <alpha_stall>1.4</alpha_stall>
+      <cla>4.2500</cla>
+      <cda>0.10</cda>
+      <cma>0.00</cma>
+      <cla_stall>-0.025</cla_stall>
+      <cda_stall>0.0</cda_stall>
+      <cma_stall>0.0</cma_stall>
+      <area>0.01</area>
+      <air_density>1.2041</air_density>
+      <cp>0 0 -0.093</cp>
+      <forward>-1 0 0</forward>
+      <upward>0 1 0</upward>
+      <link_name>rotor_pusher</link_name>
+    </plugin>
+    <plugin name="rotor_1_blade_1" filename="libLiftDragPlugin.so">
+      <a0>0.3</a0>
+      <alpha_stall>1.4</alpha_stall>
+      <cla>4.2500</cla>
+      <cda>0.10</cda>
+      <cma>0.00</cma>
+      <cla_stall>-0.025</cla_stall>
+      <cda_stall>0.0</cda_stall>
+      <cma_stall>0.0</cma_stall>
+      <area>0.01</area>
+      <air_density>1.2041</air_density>
+      <cp>0 0 -0.093</cp>
+      <forward>-1 0 0</forward>
+      <upward>0 1 0</upward>
+      <link_name>rotor_1</link_name>
+    </plugin>
+    <plugin name="rotor_1_blade_2" filename="libLiftDragPlugin.so">
+      <a0>0.3</a0>
+      <alpha_stall>1.4</alpha_stall>
+      <cla>4.2500</cla>
+      <cda>0.10</cda>
+      <cma>0.00</cma>
+      <cla_stall>-0.025</cla_stall>
+      <cda_stall>0.0</cda_stall>
+      <cma_stall>0.0</cma_stall>
+      <area>0.01</area>
+      <air_density>1.2041</air_density>
+      <cp>0 0 0.093</cp>
+      <forward>1 0 0</forward>
+      <upward>0 1 0</upward>
+      <link_name>rotor_1</link_name>
+    </plugin>
+    <plugin name="rotor_2_blade_1" filename="libLiftDragPlugin.so">
+      <a0>0.3</a0>
+      <alpha_stall>1.4</alpha_stall>
+      <cla>4.2500</cla>
+      <cda>0.10</cda>
+      <cma>0.00</cma>
+      <cla_stall>-0.025</cla_stall>
+      <cda_stall>0.0</cda_stall>
+      <cma_stall>0.0</cma_stall>
+      <area>0.01</area>
+      <air_density>1.2041</air_density>
+      <cp>0 0 0.093</cp> <!-- check sign -->
+      <forward>-1 0 0</forward>
+      <upward>0 1 0</upward>
+      <link_name>rotor_2</link_name>
+    </plugin>
+    <plugin name="rotor_2_blade_2" filename="libLiftDragPlugin.so">
+      <a0>0.3</a0>
+      <alpha_stall>1.4</alpha_stall>
+      <cla>4.2500</cla>
+      <cda>0.10</cda>
+      <cma>0.00</cma>
+      <cla_stall>-0.025</cla_stall>
+      <cda_stall>0.0</cda_stall>
+      <cma_stall>0.0</cma_stall>
+      <area>0.01</area>
+      <air_density>1.2041</air_density>
+      <cp>0 0 -0.093</cp> <!-- check sign -->
+      <forward>1 0 0</forward>
+      <upward>0 1 0</upward>
+      <link_name>rotor_2</link_name>
+    </plugin>
+    <plugin name="rotor_0_blade_1" filename="libLiftDragPlugin.so">
+      <a0>0.3</a0>
+      <alpha_stall>1.4</alpha_stall>
+      <cla>4.2500</cla>
+      <cda>0.10</cda>
+      <cma>0.00</cma>
+      <cla_stall>-0.025</cla_stall>
+      <cda_stall>0.0</cda_stall>
+      <cma_stall>0.0</cma_stall>
+      <area>0.01</area>
+      <air_density>1.2041</air_density>
+      <cp>0 0 0.093</cp>
+      <forward>1 0 0</forward>
+      <upward>0 1 0</upward>
+      <link_name>rotor_0</link_name>
+    </plugin>
+    <plugin name="rotor_0_blade_2" filename="libLiftDragPlugin.so">
+      <a0>0.3</a0>
+      <alpha_stall>1.4</alpha_stall>
+      <cla>4.2500</cla>
+      <cda>0.10</cda>
+      <cma>0.00</cma>
+      <cla_stall>-0.025</cla_stall>
+      <cda_stall>0.0</cda_stall>
+      <cma_stall>0.0</cma_stall>
+      <area>0.01</area>
+      <air_density>1.2041</air_density>
+      <cp>0 0 -0.093</cp>
+      <forward>-1 0 0</forward>
+      <upward>0 1 0</upward>
+      <link_name>rotor_0</link_name>
+    </plugin>
+    <plugin name="rotor_3_blade_1" filename="libLiftDragPlugin.so">
+      <a0>0.3</a0>
+      <alpha_stall>1.4</alpha_stall>
+      <cla>4.2500</cla>
+      <cda>0.10</cda>
+      <cma>0.00</cma>
+      <cla_stall>-0.025</cla_stall>
+      <cda_stall>0.0</cda_stall>
+      <cma_stall>0.0</cma_stall>
+      <area>0.01</area>
+      <air_density>1.2041</air_density>
+      <cp>0 0 -0.093</cp>
+      <forward>1 0 0</forward>
+      <upward>0 1 0</upward>
+      <link_name>rotor_3</link_name>
+    </plugin>
+    <plugin name="rotor_3_blade_2" filename="libLiftDragPlugin.so">
+      <a0>0.3</a0>
+      <alpha_stall>1.4</alpha_stall>
+      <cla>4.2500</cla>
+      <cda>0.10</cda>
+      <cma>0.00</cma>
+      <cla_stall>-0.025</cla_stall>
+      <cda_stall>0.0</cda_stall>
+      <cma_stall>0.0</cma_stall>
+      <area>0.01</area>
+      <air_density>1.2041</air_density>
+      <cp>0 0 0.093</cp>
+      <forward>-1 0 0</forward>
+      <upward>0 1 0</upward>
+      <link_name>rotor_3</link_name>
+    </plugin>
+    <plugin name="arducopter_plugin" filename="libArduPilotPlugin.so">
+      <fdm_addr>127.0.0.1</fdm_addr>
+      <fdm_port_in>9002</fdm_port_in>
+      <fdm_port_out>9003</fdm_port_out>
+      <!--
+          Require by APM :
+          Only change model and gazebo from XYZ to XY-Z coordinates
+      -->
+      <modelXYZToAirplaneXForwardZDown>0 0 0 3.141593 0 0</modelXYZToAirplaneXForwardZDown>
+      <gazeboXYZToNED>0 0 0 3.141593 0 0</gazeboXYZToNED>
+      <imuName>gauthali_vtol/imu_link::imu_sensor</imuName>
+      <connectionTimeoutMaxCount>5</connectionTimeoutMaxCount>
+      <!-- <control channel="2">
+        <multiplier>1</multiplier>
+        <offset>-0.5</offset>
+        <type>POSITION</type>
+        <p_gain>2.5</p_gain>
+        <i_gain>0</i_gain>
+        <d_gain>0.1</d_gain>
+        <i_max>0</i_max>
+        <i_min>0</i_min>
+        <cmd_max>1</cmd_max>
+        <cmd_min>-1</cmd_min>
+        <jointName>elevator_joint</jointName>
+      </control> -->
+      <control channel="3">
+
+        <multiplier>1000</multiplier>
+        <offset>0.2</offset>
+        <type>VELOCITY</type>
+        <p_gain>0.5</p_gain>
+        <i_gain>0</i_gain>
+        <d_gain>0</d_gain>
+        <i_max>0</i_max>
+        <i_min>0</i_min>
+        <cmd_max>2.0</cmd_max>
+        <cmd_min>0.0</cmd_min>
+        <jointName>rotor_pusher_joint</jointName>
+      </control>
+      <control channel="0">
+        <multiplier>1</multiplier>
+        <offset>-0.5</offset>
+        <type>POSITION</type>
+        <p_gain>10.0</p_gain>
+        <i_gain>0</i_gain>
+        <d_gain>0</d_gain>
+        <i_max>0</i_max>
+        <i_min>0</i_min>
+        <cmd_max>2.0</cmd_max>
+        <cmd_min>-2.0</cmd_min>
+        <jointName>left_aileron_joint</jointName>
+      </control>
+      <control channel="1">
+        <multiplier>1</multiplier>
+        <offset>-0.5</offset>
+        <type>POSITION</type>
+        <p_gain>10.0</p_gain>
+        <i_gain>0</i_gain>
+        <d_gain>0</d_gain>
+        <i_max>0</i_max>
+        <i_min>0</i_min>
+        <cmd_max>2.0</cmd_max>
+        <cmd_min>-2.0</cmd_min>
+        <jointName>right_aileron_joint</jointName>
+      </control>
+      <control channel="4">
+        <type>VELOCITY</type>
+        <offset>0</offset>
+        <p_gain>0.20</p_gain>
+        <i_gain>0</i_gain>
+        <d_gain>0</d_gain>
+        <i_max>0</i_max>
+        <i_min>0</i_min>
+        <cmd_max>2.5</cmd_max>
+        <cmd_min>-2.5</cmd_min>
+        <jointName>rotor_0_joint</jointName>
+        <multiplier>1000</multiplier>
+        <!-- <multiplier>1500</multiplier> -->
+        <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>
+      </control>
+      <control channel="5">
+        <type>VELOCITY</type>
+        <offset>0</offset>
+        <p_gain>0.20</p_gain>
+        <i_gain>0</i_gain>
+        <d_gain>0</d_gain>
+        <i_max>0</i_max>
+        <i_min>0</i_min>
+        <cmd_max>2.5</cmd_max>
+        <cmd_min>-2.5</cmd_min>
+        <jointName>rotor_1_joint</jointName>
+        <multiplier>1000</multiplier>
+        <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>
+      </control>
+      <control channel="6">
+        <type>VELOCITY</type>
+        <offset>0</offset>
+        <p_gain>0.20</p_gain>
+        <i_gain>0</i_gain>
+        <d_gain>0</d_gain>
+        <i_max>0</i_max>
+        <i_min>0</i_min>
+        <cmd_max>2.5</cmd_max>
+        <cmd_min>-2.5</cmd_min>
+        <jointName>rotor_2_joint</jointName>
+        <multiplier>-1000</multiplier>
+        <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>
+      </control>
+      <control channel="7">
+        <type>VELOCITY</type>
+        <offset>0</offset>
+        <p_gain>0.20</p_gain>
+        <i_gain>0</i_gain>
+        <d_gain>0</d_gain>
+        <i_max>0</i_max>
+        <i_min>0</i_min>
+        <cmd_max>2.5</cmd_max>
+        <cmd_min>-2.5</cmd_min>
+        <jointName>rotor_3_joint</jointName>
+        <multiplier>-1000</multiplier>
+        <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>
+      </control>
+    </plugin>
+  </model>
+</sdf>
