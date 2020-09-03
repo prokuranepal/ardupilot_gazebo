@@ -53,59 +53,6 @@ using namespace gazebo;
 
 GZ_REGISTER_MODEL_PLUGIN(ArduPilotPlugin)
 
-/// \brief Obtains a parameter from sdf.
-/// \param[in] _sdf Pointer to the sdf object.
-/// \param[in] _name Name of the parameter.
-/// \param[out] _param Param Variable to write the parameter to.
-/// \param[in] _default_value Default value, if the parameter not available.
-/// \param[in] _verbose If true, gzerror if the parameter is not available.
-/// \return True if the parameter was found in _sdf, false otherwise.
-template<class T>
-bool getSdfParam(sdf::ElementPtr _sdf, const std::string &_name,
-  T &_param, const T &_defaultValue, const bool &_verbose = false)
-{
-  if (_sdf->HasElement(_name))
-  {
-    _param = _sdf->GetElement(_name)->Get<T>();
-    return true;
-  }
-
-  _param = _defaultValue;
-  if (_verbose)
-  {
-    gzerr << "[ArduPilotPlugin] Please specify a value for parameter ["
-      << _name << "].\n";
-  }
-  return false;
-}
-
-// DON'T MERGE
-std::vector<std::string> getSensorScopedName(physics::ModelPtr _model,
-          const std::string &_name)
-{
-  std::vector<std::string> names;
-  for (gazebo::physics::Link_V::const_iterator iter = _model->GetLinks().begin();
-       iter != _model->GetLinks().end(); ++iter)
-  {
-    for (unsigned int j = 0; j < (*iter)->GetSensorCount(); ++j)
-    {
-        const auto sensorName = (*iter)->GetSensorName(j);
-        if (sensorName.size() < _name.size())
-        {
-            continue;
-        }
-        if (sensorName.substr(
-                sensorName.size()
-                        - _name.size(), _name.size()) ==
-                _name)
-        {
-            names.push_back(sensorName);
-        }
-    }
-  }
-  return names;
-}
-// END DON'T MERGE
 /// \brief A servo packet.
 struct ServoPacket
 {
@@ -599,8 +546,8 @@ void ArduPilotPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
       control.offset = 0;
     }
 
-    getSdfParam<double>(controlSDF, "rotorVelocitySlowdownSim",
-        control.rotorVelocitySlowdownSim, 1);
+    control.rotorVelocitySlowdownSim =
+        controlSDF->Get("rotorVelocitySlowdownSim", 1).first;
 
     if (ignition::math::equal(control.rotorVelocitySlowdownSim, 0.0))
     {
@@ -611,10 +558,10 @@ void ArduPilotPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
       control.rotorVelocitySlowdownSim = 1.0;
     }
 
-    getSdfParam<double>(controlSDF, "frequencyCutoff",
-        control.frequencyCutoff, control.frequencyCutoff);
-    getSdfParam<double>(controlSDF, "samplingRate",
-        control.samplingRate, control.samplingRate);
+    control.frequencyCutoff =
+          controlSDF->Get("frequencyCutoff", control.frequencyCutoff).first;
+    control.samplingRate =
+          controlSDF->Get("samplingRate", control.samplingRate).first;
 
     // use gazebo::math::Filter
     control.filter.Fc(control.frequencyCutoff, control.samplingRate);
@@ -628,61 +575,47 @@ void ArduPilotPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
     // Overload the PID parameters if they are available.
     double param;
     // carry over from ArduCopter plugin
-    getSdfParam<double>(controlSDF, "vel_p_gain", param,
-      control.pid.GetPGain());
+    param = controlSDF->Get("vel_p_gain", control.pid.GetPGain()).first;
     control.pid.SetPGain(param);
 
-    getSdfParam<double>(controlSDF, "vel_i_gain", param,
-      control.pid.GetIGain());
+    param = controlSDF->Get("vel_i_gain", control.pid.GetIGain()).first;
     control.pid.SetIGain(param);
 
-    getSdfParam<double>(controlSDF, "vel_d_gain", param,
-       control.pid.GetDGain());
+    param = controlSDF->Get("vel_d_gain", control.pid.GetDGain()).first;
     control.pid.SetDGain(param);
 
-    getSdfParam<double>(controlSDF, "vel_i_max", param,
-      control.pid.GetIMax());
+    param = controlSDF->Get("vel_i_max", control.pid.GetIMax()).first;
     control.pid.SetIMax(param);
 
-    getSdfParam<double>(controlSDF, "vel_i_min", param,
-      control.pid.GetIMin());
+    param = controlSDF->Get("vel_i_min", control.pid.GetIMin()).first;
     control.pid.SetIMin(param);
 
-    getSdfParam<double>(controlSDF, "vel_cmd_max", param,
-        control.pid.GetCmdMax());
+    param = controlSDF->Get("vel_cmd_max", control.pid.GetCmdMax()).first;
     control.pid.SetCmdMax(param);
 
-    getSdfParam<double>(controlSDF, "vel_cmd_min", param,
-        control.pid.GetCmdMin());
+    param = controlSDF->Get("vel_cmd_min", control.pid.GetCmdMin()).first;
     control.pid.SetCmdMin(param);
 
     // new params, overwrite old params if exist
-    getSdfParam<double>(controlSDF, "p_gain", param,
-      control.pid.GetPGain());
+    param = controlSDF->Get("p_gain", control.pid.GetPGain()).first;
     control.pid.SetPGain(param);
 
-    getSdfParam<double>(controlSDF, "i_gain", param,
-      control.pid.GetIGain());
+    param = controlSDF->Get("i_gain", control.pid.GetIGain()).first;
     control.pid.SetIGain(param);
 
-    getSdfParam<double>(controlSDF, "d_gain", param,
-       control.pid.GetDGain());
+    param = controlSDF->Get("d_gain", control.pid.GetDGain()).first;
     control.pid.SetDGain(param);
 
-    getSdfParam<double>(controlSDF, "i_max", param,
-      control.pid.GetIMax());
+    param = controlSDF->Get("i_max", control.pid.GetIMax()).first;
     control.pid.SetIMax(param);
 
-    getSdfParam<double>(controlSDF, "i_min", param,
-      control.pid.GetIMin());
+    param = controlSDF->Get("i_min", control.pid.GetIMin()).first;
     control.pid.SetIMin(param);
 
-    getSdfParam<double>(controlSDF, "cmd_max", param,
-        control.pid.GetCmdMax());
+    param = controlSDF->Get("cmd_max", control.pid.GetCmdMax()).first;
     control.pid.SetCmdMax(param);
 
-    getSdfParam<double>(controlSDF, "cmd_min", param,
-        control.pid.GetCmdMin());
+    param = controlSDF->Get("cmd_min", control.pid.GetCmdMin()).first;
     control.pid.SetCmdMin(param);
 
     // set pid initial command
@@ -693,12 +626,11 @@ void ArduPilotPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
   }
 
   // Get sensors
-  std::string imuName;
-  getSdfParam<std::string>(_sdf, "imuName", imuName, "imu_sensor");
-  // std::string imuScopedName = this->dataPtr->model->GetWorld()->GetName()
-  //     + "::" + this->dataPtr->model->GetScopedName()
-  //     + "::" + imuName;
-  std::vector<std::string> imuScopedName = getSensorScopedName(this->dataPtr->model, imuName);
+  std::string imuName =
+    _sdf->Get("imuName", static_cast<std::string>("imu_sensor")).first;
+  std::vector<std::string> imuScopedName =
+    this->dataPtr->model->SensorScopedName(imuName);
+
   if (imuScopedName.size() > 1)
   {
     gzwarn << "[" << this->dataPtr->modelName << "] "
@@ -757,9 +689,8 @@ void ArduPilotPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
   }
 /* NOT MERGED IN MASTER YET
     // Get GPS
-    std::string gpsName;
-  getSdfParam<std::string>(_sdf, "gpsName", gpsName, "gps_sensor");
-  std::vector<std::string> gpsScopedName = getSensorScopedName(this->dataPtr->model, gpsName);
+  std::string gpsName = _sdf->Get("imuName", static_cast<std::string>("gps_sensor")).first;
+  std::vector<std::string> gpsScopedName = SensorScopedName(this->dataPtr->model, gpsName);
   if (gpsScopedName.size() > 1)
   {
     gzwarn << "[" << this->dataPtr->modelName << "] "
@@ -820,9 +751,9 @@ void ArduPilotPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
 
   // Get Rangefinder
   // TODO add sonar
-    std::string rangefinderName;
-  getSdfParam<std::string>(_sdf, "rangefinderName", rangefinderName, "rangefinder_sensor");
-  std::vector<std::string> rangefinderScopedName = getSensorScopedName(this->dataPtr->model, rangefinderName);
+  std::string rangefinderName = _sdf->Get("rangefinderName",
+    static_cast<std::string>("rangefinder_sensor")).first;
+  std::vector<std::string> rangefinderScopedName = SensorScopedName(this->dataPtr->model, rangefinderName);
   if (rangefinderScopedName.size() > 1)
   {
     gzwarn << "[" << this->dataPtr->modelName << "] "
@@ -893,8 +824,8 @@ void ArduPilotPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
   }
 
   // Missed update count before we declare arduPilotOnline status false
-  getSdfParam<int>(_sdf, "connectionTimeoutMaxCount",
-    this->dataPtr->connectionTimeoutMaxCount, 10);
+  this->dataPtr->connectionTimeoutMaxCount =
+    _sdf->Get("connectionTimeoutMaxCount", 10).first;
 
   // Listen to the update event. This event is broadcast every simulation
   // iteration.
@@ -911,7 +842,7 @@ void ArduPilotPlugin::OnUpdate()
   std::lock_guard<std::mutex> lock(this->dataPtr->mutex);
 
   const gazebo::common::Time curTime =
-    this->dataPtr->model->GetWorld()->GetSimTime();
+    this->dataPtr->model->GetWorld()->SimTime();
 
   // Update the control surfaces and publish the new state.
   if (curTime > this->dataPtr->lastControllerUpdateTime)
@@ -942,14 +873,14 @@ void ArduPilotPlugin::ResetPIDs()
 /////////////////////////////////////////////////
 bool ArduPilotPlugin::InitArduPilotSockets(sdf::ElementPtr _sdf) const
 {
-  getSdfParam<std::string>(_sdf, "fdm_addr",
-      this->dataPtr->fdm_addr, "127.0.0.1");
-  getSdfParam<std::string>(_sdf, "listen_addr",
-      this->dataPtr->listen_addr, "127.0.0.1");
-  getSdfParam<uint16_t>(_sdf, "fdm_port_in",
-      this->dataPtr->fdm_port_in, 9002);
-  getSdfParam<uint16_t>(_sdf, "fdm_port_out",
-      this->dataPtr->fdm_port_out, 9003);
+  this->dataPtr->fdm_addr =
+    _sdf->Get("fdm_addr", static_cast<std::string>("127.0.0.1")).first;
+  this->dataPtr->listen_addr =
+    _sdf->Get("listen_addr", static_cast<std::string>("127.0.0.1")).first;
+  this->dataPtr->fdm_port_in =
+    _sdf->Get("fdm_port_in", static_cast<uint32_t>(9002)).first;
+  this->dataPtr->fdm_port_out =
+    _sdf->Get("fdm_port_out", static_cast<uint32_t>(9003)).first;
 
   if (!this->dataPtr->socket_in.Bind(this->dataPtr->listen_addr.c_str(),
       this->dataPtr->fdm_port_in))
@@ -996,7 +927,7 @@ void ArduPilotPlugin::ApplyMotorForces(const double _dt)
         const double scaler = 5*(upper_Lim - lower_Lim);
         */
         const double posTarget = this->dataPtr->controls[i].cmd;
-        const double pos = this->dataPtr->controls[i].joint->GetAngle(0).Radian();
+        const double pos = this->dataPtr->controls[i].joint->Position();
         const double error = pos - posTarget;
         const double force = this->dataPtr->controls[i].pid.Update(error, _dt);
         this->dataPtr->controls[i].joint->SetForce(0, force);
@@ -1192,7 +1123,7 @@ void ArduPilotPlugin::SendState() const
   // send_fdm
   fdmPacket pkt;
 
-  pkt.timestamp = this->dataPtr->model->GetWorld()->GetSimTime().Double();
+  pkt.timestamp = this->dataPtr->model->GetWorld()->SimTime().Double();
 
   // asssumed that the imu orientation is:
   //   x forward
@@ -1242,7 +1173,7 @@ void ArduPilotPlugin::SendState() const
   //   to: airplane x-forward, y-left, z-down
   const ignition::math::Pose3d gazeboXYZToModelXForwardZDown =
     this->modelXYZToAirplaneXForwardZDown +
-    this->dataPtr->model->GetWorldPose().Ign();
+    this->dataPtr->model->WorldPose();
 
   // get transform from world NED to Model frame
   const ignition::math::Pose3d NEDToModelXForwardZUp =
@@ -1275,7 +1206,7 @@ void ArduPilotPlugin::SendState() const
   // or...
   // Get model velocity in NED frame
   const ignition::math::Vector3d velGazeboWorldFrame =
-    this->dataPtr->model->GetLink()->GetWorldLinearVel().Ign();
+    this->dataPtr->model->GetLink()->WorldLinearVel();
   const ignition::math::Vector3d velNEDFrame =
     this->gazeboXYZToNED.Rot().RotateVectorReverse(velGazeboWorldFrame);
   pkt.velocityXYZ[0] = velNEDFrame.X();

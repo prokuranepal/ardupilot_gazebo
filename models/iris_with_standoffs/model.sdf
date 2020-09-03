@@ -1,5 +1,5 @@
 <?xml version='1.0'?>
-<sdf version='1.6'>
+<sdf version='1.5'>
   <model name='iris'>
     <pose>0 0 0.194923 0 0 0</pose>
     <link name='base_link'>
@@ -35,8 +35,8 @@
           </contact>
           <friction>
             <ode>
-              <mu>1.0</mu>
-              <mu2>1.0</mu2>
+              <mu>100000.0</mu>
+              <mu2>100000.0</mu2>
             </ode>
           </friction>
         </surface>
