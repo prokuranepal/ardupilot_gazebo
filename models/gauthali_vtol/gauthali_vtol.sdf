@@ -4,15 +4,15 @@
     <link name='base_link'>
       <pose frame=''>0 0 0 0 -0 0</pose>
       <inertial>
-        <pose frame=''>0.11856 -0.056508 8e-06 0 -0 0</pose>
-        <mass>9.2977</mass>
+        <pose frame=''>-0.119905 8e-06 -0.055006 0 -0 0</pose>
+        <mass>9.00568</mass>
         <inertia>
-          <ixx>0.32593</ixx>
-          <ixy>-0.013555</ixy>
-          <ixz>-7.8276e-06</ixz>
-          <iyy>0.52764</iyy>
-          <iyz>-1.5075e-06</iyz>
-          <izz>0.25239</izz>
+          <ixx>0.323867</ixx>
+          <ixy>7.81346e-06</ixy>
+          <ixz>0.012841</ixz>
+          <iyy>0.240986</iyy>
+          <iyz>-1.50384e-06</iyz>
+          <izz>0.516377</izz>
         </inertia>
       </inertial>
       <collision name='base_link_collision'>
@@ -20,7 +20,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://gauthali_vtol/meshes/base_link.dae</uri>
+            <uri>model://gauthali_vtol/meshes/base_link.STL</uri>
           </mesh>
         </geometry>
       </collision>
@@ -29,23 +29,22 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://gauthali_vtol/meshes/base_link.dae</uri>
+            <uri>model://gauthali_vtol/meshes/base_link.STL</uri>
           </mesh>
         </geometry>
       </visual>
     </link>
-    <link name='gauthali_vtol/imu_link'>
-      <pose>0 0 0 0 0 0</pose>
+    <link name='gauthali_11/imu_link'>
       <inertial>
         <pose>0 0 0 0 0 0</pose>
-        <mass>0.015</mass>
+        <mass>0.15</mass>
         <inertia>
-          <ixx>1e-05</ixx>
+          <ixx>0.00001</ixx>
           <ixy>0</ixy>
           <ixz>0</ixz>
-          <iyy>1e-05</iyy>
+          <iyy>0.00002</iyy>
           <iyz>0</iyz>
-          <izz>1e-05</izz>
+          <izz>0.00002</izz>
         </inertia>
       </inertial>
       <sensor name="imu_sensor" type="imu">
@@ -54,11 +53,11 @@
         <update_rate>1000.0</update_rate>
       </sensor>
     </link>
-    <joint name='gauthali_vtol/imu_joint' type='revolute'>
-      <child>gauthali_vtol/imu_link</child>
+    <joint name='gauthali_11/imu_joint' type='revolute'>
+      <child>gauthali_11/imu_link</child>
       <parent>base_link</parent>
       <axis>
-        <xyz>1 0 0</xyz>
+        <xyz>0 0 1</xyz>
         <limit>
           <lower>0</lower>
           <upper>0</upper>
@@ -66,24 +65,28 @@
           <velocity>0</velocity>
         </limit>
         <dynamics>
-          <spring_reference>0</spring_reference>
-          <spring_stiffness>0</spring_stiffness>
+          <damping>1.0</damping>
         </dynamics>
         <use_parent_model_frame>1</use_parent_model_frame>
       </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>1</implicit_spring_damper>
+        </ode>
+      </physics>
     </joint>
     <link name='left_aileron'>
-      <pose frame=''>0.28599 -0.38 0.006356 1.5708 -0.29369 0</pose>
+      <pose frame=''>-0.28599 0.38 0.006356 0 -0 0</pose>
       <inertial>
-        <pose frame=''>0.017378 -0.008312 0.45424 0 -0 0</pose>
-        <mass>0.0090385</mass>
+        <pose frame=''>-0.019251 0.45424 -0.000708 0 -0 0</pose>
+        <mass>0.0090384</mass>
         <inertia>
-          <ixx>0.00063296</ixx>
-          <ixy>3.822e-07</ixy>
-          <ixz>-1.7169e-07</ixz>
-          <iyy>0.00063438</iyy>
-          <iyz>4.2676e-07</iyz>
-          <izz>1.7477e-06</izz>
+          <ixx>0.0006329</ixx>
+          <ixy>3.2735e-07</ixy>
+          <ixz>2.5966e-07</ixz>
+          <iyy>1.7477e-06</iyy>
+          <iyz>3.2316e-07</iyz>
+          <izz>0.00063444</izz>
         </inertia>
       </inertial>
       <collision name='left_aileron_collision'>
@@ -91,7 +94,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://gauthali_vtol/meshes/left_aileron.dae</uri>
+            <uri>model://gauthali_vtol/meshes/left_aileron.STL</uri>
           </mesh>
         </geometry>
       </collision>
@@ -100,7 +103,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://gauthali_vtol/meshes/left_aileron.dae</uri>
+            <uri>model://gauthali_vtol/meshes/left_aileron.STL</uri>
           </mesh>
         </geometry>
       </visual>
@@ -109,7 +112,7 @@
       <child>left_aileron</child>
       <parent>base_link</parent>
       <axis>
-        <xyz>1e-06 -1 -4e-06</xyz>
+        <xyz>0 1 0</xyz>
         <limit>
           <lower>-0.53</lower>
           <upper>0.53</upper>
@@ -124,7 +127,7 @@
       </axis>
     </joint>
     <link name='left_ruddervator'>
-      <pose frame=''>1.3278 -0.17783 0.17783 2.3562 -0 0</pose>
+      <pose frame=''>-1.3278 0.17783 0.17783 2.3562 0 -3.14159</pose>
       <inertial>
         <pose frame=''>0.029088 -0.007151 0.008477 0 -0 0</pose>
         <mass>0.011825</mass>
@@ -142,7 +145,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://gauthali_vtol/meshes/left_ruddervator.dae</uri>
+            <uri>model://gauthali_vtol/meshes/left_ruddervator.STL</uri>
           </mesh>
         </geometry>
       </collision>
@@ -151,7 +154,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://gauthali_vtol/meshes/left_ruddervator.dae</uri>
+            <uri>model://gauthali_vtol/meshes/left_ruddervator.STL</uri>
           </mesh>
         </geometry>
       </visual>
@@ -160,7 +163,7 @@
       <child>left_ruddervator</child>
       <parent>base_link</parent>
       <axis>
-        <xyz>0 -0.707103 -0.707111</xyz>
+        <xyz>-5e-06 0.707103 -0.707111</xyz>
         <limit>
           <lower>-0.53</lower>
           <upper>0.53</upper>
@@ -175,17 +178,17 @@
       </axis>
     </joint>
     <link name='right_aileron'>
-      <pose frame=''>0.28599 0.38 0.006356 1.5708 -0.59602 0</pose>
+      <pose frame=''>-0.28599 -0.38 0.006356 0 -0 0</pose>
       <inertial>
-        <pose frame=''>0.017379 -0.008312 -0.45424 0 -0 0</pose>
+        <pose frame=''>-0.019048 -0.45424 0.002877 0 -0 0</pose>
         <mass>0.0090385</mass>
         <inertia>
-          <ixx>0.00063296</ixx>
-          <ixy>3.822e-07</ixy>
-          <ixz>1.716e-07</ixz>
-          <iyy>0.00063439</iyy>
-          <iyz>-4.2675e-07</iyz>
-          <izz>1.7477e-06</izz>
+          <ixx>0.00063306</ixx>
+          <ixy>-3.8157e-07</ixy>
+          <ixz>5.2128e-07</ixz>
+          <iyy>1.7477e-06</iyy>
+          <iyz>-2.5684e-07</iyz>
+          <izz>0.00063429</izz>
         </inertia>
       </inertial>
       <collision name='right_aileron_collision'>
@@ -193,7 +196,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://gauthali_vtol/meshes/right_aileron.dae</uri>
+            <uri>model://gauthali_vtol/meshes/right_aileron.STL</uri>
           </mesh>
         </geometry>
       </collision>
@@ -202,7 +205,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://gauthali_vtol/meshes/right_aileron.dae</uri>
+            <uri>model://gauthali_vtol/meshes/right_aileron.STL</uri>
           </mesh>
         </geometry>
       </visual>
@@ -211,7 +214,7 @@
       <child>right_aileron</child>
       <parent>base_link</parent>
       <axis>
-        <xyz>2e-06 -1 -3e-06</xyz>
+        <xyz>0 1 0</xyz>
         <limit>
           <lower>-0.53</lower>
           <upper>0.53</upper>
@@ -226,7 +229,7 @@
       </axis>
     </joint>
     <link name='right_ruddervator'>
-      <pose frame=''>1.3278 0.17783 0.17783 2.3562 -0 0</pose>
+      <pose frame=''>-1.3278 -0.17783 0.17783 2.3562 0 -3.14159</pose>
       <inertial>
         <pose frame=''>0.029088 -0.008476 0.007151 0 -0 0</pose>
         <mass>0.011825</mass>
@@ -244,7 +247,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://gauthali_vtol/meshes/right_ruddervator.dae</uri>
+            <uri>model://gauthali_vtol/meshes/right_ruddervator.STL</uri>
           </mesh>
         </geometry>
       </collision>
@@ -253,7 +256,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://gauthali_vtol/meshes/right_ruddervator.dae</uri>
+            <uri>model://gauthali_vtol/meshes/right_ruddervator.STL</uri>
           </mesh>
         </geometry>
       </visual>
@@ -262,7 +265,7 @@
       <child>right_ruddervator</child>
       <parent>base_link</parent>
       <axis>
-        <xyz>0 -0.707111 0.707103</xyz>
+        <xyz>-5e-06 0.707111 0.707103</xyz>
         <limit>
           <lower>-0.53</lower>
           <upper>0.53</upper>
@@ -277,17 +280,17 @@
       </axis>
     </joint>
     <link name='rotor_0'>
-      <pose frame=''>-0.564 0.35355 0.006413 1.5708 -0 0.011221</pose>
+      <pose frame=''>0.564 -0.35355 0.006413 0 -0 0</pose>
       <inertial>
-        <pose frame=''>-0 0.015147 0 0 -0 0</pose>
+        <pose frame=''>0.007 -0 0.015147 0 -0 0</pose>
         <mass>0.067297</mass>
         <inertia>
-          <ixx>0.0014426</ixx>
-          <ixy>9.0561e-13</ixy>
-          <ixz>6.2334e-05</ixz>
-          <iyy>0.0014525</iyy>
-          <iyz>-9.2603e-13</iyz>
-          <izz>1.1315e-05</izz>
+          <ixx>0.0014438</ixx>
+          <ixy>-4.626e-05</ixy>
+          <ixz>-2.2886e-12</ixz>
+          <iyy>1.0096e-05</iyy>
+          <iyz>1.3106e-11</iyz>
+          <izz>0.0014525</izz>
         </inertia>
       </inertial>
       <collision name='rotor_0_collision'>
@@ -295,7 +298,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://gauthali_vtol/meshes/rotor_0.dae</uri>
+            <uri>model://gauthali_vtol/meshes/rotor_0.STL</uri>
           </mesh>
         </geometry>
       </collision>
@@ -304,7 +307,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://gauthali_vtol/meshes/rotor_0.dae</uri>
+            <uri>model://gauthali_vtol/meshes/rotor_0.STL</uri>
           </mesh>
         </geometry>
       </visual>
@@ -313,7 +316,7 @@
       <child>rotor_0</child>
       <parent>base_link</parent>
       <axis>
-        <xyz>0 -4e-06 1</xyz>
+        <xyz>0 0 1</xyz>
         <limit>
           <lower>-1e+16</lower>
           <upper>1e+16</upper>
@@ -326,17 +329,17 @@
       </axis>
     </joint>
     <link name='rotor_1'>
-      <pose frame=''>0.836 -0.35355 0.006413 1.5708 -0 -3.1388</pose>
+      <pose frame=''>-0.836 0.35355 0.006413 0 -0 0</pose>
       <inertial>
-        <pose frame=''>-0 0.015147 0 0 -0 0</pose>
+        <pose frame=''>0.007 0 0.015147 0 -0 0</pose>
         <mass>0.067297</mass>
         <inertia>
-          <ixx>0.0014426</ixx>
-          <ixy>9.1437e-13</ixy>
-          <ixz>6.2334e-05</ixz>
-          <iyy>0.0014525</iyy>
-          <iyz>-9.5513e-13</iyz>
-          <izz>1.1315e-05</izz>
+          <ixx>0.0014429</ixx>
+          <ixy>-5.8288e-05</ixy>
+          <ixz>2.1818e-12</ixz>
+          <iyy>1.0974e-05</iyy>
+          <iyz>-1.307e-11</iyz>
+          <izz>0.0014525</izz>
         </inertia>
       </inertial>
       <collision name='rotor_1_collision'>
@@ -344,7 +347,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://gauthali_vtol/meshes/rotor_1.dae</uri>
+            <uri>model://gauthali_vtol/meshes/rotor_1.STL</uri>
           </mesh>
         </geometry>
       </collision>
@@ -353,7 +356,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://gauthali_vtol/meshes/rotor_1.dae</uri>
+            <uri>model://gauthali_vtol/meshes/rotor_1.STL</uri>
           </mesh>
         </geometry>
       </visual>
@@ -362,7 +365,7 @@
       <child>rotor_1</child>
       <parent>base_link</parent>
       <axis>
-        <xyz>-0 4e-06 1</xyz>
+        <xyz>0 0 1</xyz>
         <limit>
           <lower>-1e+16</lower>
           <upper>1e+16</upper>
@@ -375,17 +378,17 @@
       </axis>
     </joint>
     <link name='rotor_2'>
-      <pose frame=''>-0.564 -0.35355 0.006413 1.5708 -0 -0.091662</pose>
+      <pose frame=''>0.564 0.35355 0.006413 0 -0 0</pose>
       <inertial>
-        <pose frame=''>0 0.015147 -0 0 -0 0</pose>
-        <mass>0.0672986</mass>
+        <pose frame=''>0.007 -0 0.015147 0 -0 0</pose>
+        <mass>0.067299</mass>
         <inertia>
-          <ixx>0.00144267</ixx>
-          <ixy>-2.29424e-13</ixy>
-          <ixz>-6.23319e-05</ixz>
-          <iyy>0.0014526</iyy>
-          <iyz>9.36363e-12</iyz>
-          <izz>1.13152e-05</izz>
+          <ixx>0.001442</ixx>
+          <ixy>-6.9181e-05</ixy>
+          <ixz>1.0898e-12</ixz>
+          <iyy>1.1945e-05</iyy>
+          <iyz>9.2792e-12</iyz>
+          <izz>0.0014526</izz>
         </inertia>
       </inertial>
       <collision name='rotor_2_collision'>
@@ -393,7 +396,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://gauthali_vtol/meshes/rotor_2.dae</uri>
+            <uri>model://gauthali_vtol/meshes/rotor_2.STL</uri>
           </mesh>
         </geometry>
       </collision>
@@ -402,7 +405,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://gauthali_vtol/meshes/rotor_2.dae</uri>
+            <uri>model://gauthali_vtol/meshes/rotor_2.STL</uri>
           </mesh>
         </geometry>
       </visual>
@@ -411,7 +414,7 @@
       <child>rotor_2</child>
       <parent>base_link</parent>
       <axis>
-        <xyz>-0 -4e-06 1</xyz>
+        <xyz>0 0 1</xyz>
         <limit>
           <lower>-1e+16</lower>
           <upper>1e+16</upper>
@@ -424,17 +427,17 @@
       </axis>
     </joint>
     <link name='rotor_3'>
-      <pose frame=''>0.836 0.35355 0.006413 1.5708 -0 -3.1164</pose>
+      <pose frame=''>-0.836 -0.35355 0.006413 0 -0 0</pose>
       <inertial>
-        <pose frame=''>0 0.015147 0 0 -0 0</pose>
+        <pose frame=''>0.007 -0 0.015147 0 -0 0</pose>
         <mass>0.067298</mass>
         <inertia>
-          <ixx>0.0014426</ixx>
-          <ixy>3.0472e-13</ixy>
-          <ixz>-6.2331e-05</ixz>
-          <iyy>0.0014526</iyy>
-          <iyz>2.8078e-13</iyz>
-          <izz>1.1315e-05</izz>
+          <ixx>0.0014386</ixx>
+          <ixy>9.8364e-05</ixy>
+          <ixz>3.0747e-13</ixz>
+          <iyy>1.5372e-05</iyy>
+          <iyz>-5.075e-13</iyz>
+          <izz>0.0014526</izz>
         </inertia>
       </inertial>
       <collision name='rotor_3_collision'>
@@ -442,7 +445,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://gauthali_vtol/meshes/rotor_3.dae</uri>
+            <uri>model://gauthali_vtol/meshes/rotor_3.STL</uri>
           </mesh>
         </geometry>
       </collision>
@@ -451,7 +454,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://gauthali_vtol/meshes/rotor_3.dae</uri>
+            <uri>model://gauthali_vtol/meshes/rotor_3.STL</uri>
           </mesh>
         </geometry>
       </visual>
@@ -460,7 +463,7 @@
       <child>rotor_3</child>
       <parent>base_link</parent>
       <axis>
-        <xyz>-0 4e-06 1</xyz>
+        <xyz>0 0 1</xyz>
         <limit>
           <lower>-1e+16</lower>
           <upper>1e+16</upper>
@@ -473,17 +476,17 @@
       </axis>
     </joint>
     <link name='rotor_pusher'>
-      <pose frame=''>0.50018 0 -0.058605 -0 -1.2758 1.5708</pose>
+      <pose frame=''>-0.50018 0 -0.058605 0 -0 0</pose>
       <inertial>
-        <pose frame=''>0 -0.0128 -0 0 -0 0</pose>
+        <pose frame=''>-0.0128 -0 -0 0 -0 0</pose>
         <mass>0.18697</mass>
         <inertia>
-          <ixx>0.004287</ixx>
-          <ixy>-2.3985e-11</ixy>
-          <ixz>0.0009704</ixz>
-          <iyy>0.0045337</iyy>
-          <iyz>-4.8833e-11</iyz>
-          <izz>0.00025725</izz>
+          <ixx>0.0045337</ixx>
+          <ixy>-3.9749e-11</ixy>
+          <ixz>-3.7147e-11</ixz>
+          <iyy>5.7998e-05</iyy>
+          <iyz>-0.00031475</iyz>
+          <izz>0.0044862</izz>
         </inertia>
       </inertial>
       <collision name='rotor_pusher_collision'>
@@ -491,7 +494,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://gauthali_vtol/meshes/rotor_pusher.dae</uri>
+            <uri>model://gauthali_vtol/meshes/rotor_pusher.STL</uri>
           </mesh>
         </geometry>
       </collision>
@@ -500,7 +503,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://gauthali_vtol/meshes/rotor_pusher.dae</uri>
+            <uri>model://gauthali_vtol/meshes/rotor_pusher.STL</uri>
           </mesh>
         </geometry>
       </visual>
@@ -509,7 +512,7 @@
       <child>rotor_pusher</child>
       <parent>base_link</parent>
       <axis>
-        <xyz>-1 -4e-06 -0</xyz>
+        <xyz>1 0 0</xyz>
         <limit>
           <lower>-1e+16</lower>
           <upper>1e+16</upper>
@@ -530,10 +533,10 @@
       <cla_stall>-3.85</cla_stall>
       <cda_stall>-0.9233984055</cda_stall>
       <cma_stall>0</cma_stall>
-      <cp>0.166 -0.55 0</cp>
+      <cp>-0.166 0.55 0</cp>
       <area>0.395</area>
       <air_density>1.2041</air_density>
-      <forward>-1 0 0</forward>
+      <forward>1 0 0</forward>
       <upward>0 0 1</upward>
       <link_name>base_link</link_name>
       <control_joint_name>
@@ -550,10 +553,10 @@
       <cla_stall>-3.85</cla_stall>
       <cda_stall>-0.9233984055</cda_stall>
       <cma_stall>0</cma_stall>
-      <cp>0.166 0.55 0</cp>
+      <cp>-0.166 -0.55 0</cp>
       <area>0.395</area>
       <air_density>1.2041</air_density>
-      <forward>-1 0 0</forward>
+      <forward>1 0 0</forward>
       <upward>0 0 1</upward>
       <link_name>base_link</link_name>
       <control_joint_name>
@@ -570,11 +573,11 @@
       <cla_stall>-3.85</cla_stall>
       <cda_stall>-0.9233984055</cda_stall>
       <cma_stall>0</cma_stall>
-      <cp>1.25 -0.1414 0.2021</cp>
+      <cp>-1.25 0.1414 0.2021</cp>
       <area>0.075</area>
       <air_density>1.2041</air_density>
-      <forward>-1 0 0</forward>
-      <upward>0 -0.707 0.707</upward>
+      <forward>1 0 0</forward>
+      <upward>0 0.707 0.707</upward>
       <link_name>base_link</link_name>
       <control_joint_name>
         left_ruddervator_joint
@@ -590,11 +593,11 @@
       <cla_stall>-3.85</cla_stall>
       <cda_stall>-0.9233984055</cda_stall>
       <cma_stall>0</cma_stall>
-      <cp>1.25 0.1414 0.2021</cp>
+      <cp>-1.25 -0.1414 0.2021</cp>
       <area>0.075</area>
       <air_density>1.2041</air_density>
-      <forward>-1 0 0</forward>
-      <upward>0 0.707 0.707</upward>
+      <forward>1 0 0</forward>
+      <upward>0 -0.707 0.707</upward>
       <link_name>base_link</link_name>
       <control_joint_name>
         right_ruddervator_joint
@@ -610,11 +613,11 @@
       <cla_stall>-0.025</cla_stall>
       <cda_stall>0.0</cda_stall>
       <cma_stall>0.0</cma_stall>
-      <area>0.01</area>
+      <area>0.02</area>
       <air_density>1.2041</air_density>
-      <cp>0 0 0.093</cp>
-      <forward>1 0 0</forward>
-      <upward>0 1 0</upward>
+      <cp>0 0.093 0</cp>
+      <forward> 0 1</forward>
+      <upward>1 0 0</upward>
       <link_name>rotor_pusher</link_name>
     </plugin>
     <plugin name="pusher_blade_2" filename="libLiftDragPlugin.so">
@@ -626,76 +629,12 @@
       <cla_stall>-0.025</cla_stall>
       <cda_stall>0.0</cda_stall>
       <cma_stall>0.0</cma_stall>
-      <area>0.01</area>
+      <area>0.02</area>
       <air_density>1.2041</air_density>
-      <cp>0 0 -0.093</cp>
-      <forward>-1 0 0</forward>
-      <upward>0 1 0</upward>
+      <cp>0 -0.093 0</cp>
+      <forward>0 0 -1</forward>
+      <upward>1 0 0</upward>
       <link_name>rotor_pusher</link_name>
-    </plugin>
-    <plugin name="rotor_1_blade_1" filename="libLiftDragPlugin.so">
-      <a0>0.3</a0>
-      <alpha_stall>1.4</alpha_stall>
-      <cla>4.2500</cla>
-      <cda>0.10</cda>
-      <cma>0.00</cma>
-      <cla_stall>-0.025</cla_stall>
-      <cda_stall>0.0</cda_stall>
-      <cma_stall>0.0</cma_stall>
-      <area>0.01</area>
-      <air_density>1.2041</air_density>
-      <cp>0 0 -0.093</cp>
-      <forward>-1 0 0</forward>
-      <upward>0 1 0</upward>
-      <link_name>rotor_1</link_name>
-    </plugin>
-    <plugin name="rotor_1_blade_2" filename="libLiftDragPlugin.so">
-      <a0>0.3</a0>
-      <alpha_stall>1.4</alpha_stall>
-      <cla>4.2500</cla>
-      <cda>0.10</cda>
-      <cma>0.00</cma>
-      <cla_stall>-0.025</cla_stall>
-      <cda_stall>0.0</cda_stall>
-      <cma_stall>0.0</cma_stall>
-      <area>0.01</area>
-      <air_density>1.2041</air_density>
-      <cp>0 0 0.093</cp>
-      <forward>1 0 0</forward>
-      <upward>0 1 0</upward>
-      <link_name>rotor_1</link_name>
-    </plugin>
-    <plugin name="rotor_2_blade_1" filename="libLiftDragPlugin.so">
-      <a0>0.3</a0>
-      <alpha_stall>1.4</alpha_stall>
-      <cla>4.2500</cla>
-      <cda>0.10</cda>
-      <cma>0.00</cma>
-      <cla_stall>-0.025</cla_stall>
-      <cda_stall>0.0</cda_stall>
-      <cma_stall>0.0</cma_stall>
-      <area>0.01</area>
-      <air_density>1.2041</air_density>
-      <cp>0 0 0.093</cp> <!-- check sign -->
-      <forward>-1 0 0</forward>
-      <upward>0 1 0</upward>
-      <link_name>rotor_2</link_name>
-    </plugin>
-    <plugin name="rotor_2_blade_2" filename="libLiftDragPlugin.so">
-      <a0>0.3</a0>
-      <alpha_stall>1.4</alpha_stall>
-      <cla>4.2500</cla>
-      <cda>0.10</cda>
-      <cma>0.00</cma>
-      <cla_stall>-0.025</cla_stall>
-      <cda_stall>0.0</cda_stall>
-      <cma_stall>0.0</cma_stall>
-      <area>0.01</area>
-      <air_density>1.2041</air_density>
-      <cp>0 0 -0.093</cp> <!-- check sign -->
-      <forward>1 0 0</forward>
-      <upward>0 1 0</upward>
-      <link_name>rotor_2</link_name>
     </plugin>
     <plugin name="rotor_0_blade_1" filename="libLiftDragPlugin.so">
       <a0>0.3</a0>
@@ -706,11 +645,11 @@
       <cla_stall>-0.025</cla_stall>
       <cda_stall>0.0</cda_stall>
       <cma_stall>0.0</cma_stall>
-      <area>0.01</area>
+      <area>0.02</area>
       <air_density>1.2041</air_density>
-      <cp>0 0 0.093</cp>
-      <forward>1 0 0</forward>
-      <upward>0 1 0</upward>
+      <cp>0  0.093 0</cp>
+      <forward>-1 0 0</forward>
+      <upward>0 0 1</upward>
       <link_name>rotor_0</link_name>
     </plugin>
     <plugin name="rotor_0_blade_2" filename="libLiftDragPlugin.so">
@@ -722,14 +661,46 @@
       <cla_stall>-0.025</cla_stall>
       <cda_stall>0.0</cda_stall>
       <cma_stall>0.0</cma_stall>
-      <area>0.01</area>
+      <area>0.02</area>
       <air_density>1.2041</air_density>
-      <cp>0 0 -0.093</cp>
-      <forward>-1 0 0</forward>
-      <upward>0 1 0</upward>
+       <cp>0 -0.093 0</cp>
+      <forward>1 0 0</forward>
+      <upward>0 0 1</upward>
       <link_name>rotor_0</link_name>
     </plugin>
-    <plugin name="rotor_3_blade_1" filename="libLiftDragPlugin.so">
+ <plugin name="rotor_1_blade_1" filename="libLiftDragPlugin.so">
+      <a0>0.3</a0>
+      <alpha_stall>1.4</alpha_stall>
+      <cla>4.2500</cla>
+      <cda>0.10</cda>
+      <cma>0.00</cma>
+      <cla_stall>-0.025</cla_stall>
+      <cda_stall>0.0</cda_stall>
+      <cma_stall>0.0</cma_stall>
+      <area>0.02</area>
+      <air_density>1.2041</air_density>
+       <cp>0 0.093 0</cp>
+      <forward>-1 0 0</forward>
+      <upward>0 0 1</upward>
+      <link_name>rotor_1</link_name>
+    </plugin>
+    <plugin name="rotor_1_blade_2" filename="libLiftDragPlugin.so">
+      <a0>0.3</a0>
+      <alpha_stall>1.4</alpha_stall>
+      <cla>4.2500</cla>
+      <cda>0.10</cda>
+      <cma>0.00</cma>
+      <cla_stall>-0.025</cla_stall>
+      <cda_stall>0.0</cda_stall>
+      <cma_stall>0.0</cma_stall>
+      <area>0.02</area>
+      <air_density>1.2041</air_density>
+      <cp>0  -0.093 0</cp>
+      <forward>1 0 0</forward>
+      <upward>0 0 1</upward>
+      <link_name>rotor_1</link_name>
+    </plugin>
+<plugin name="rotor_2_blade_1" filename="libLiftDragPlugin.so">
       <a0>0.3</a0>
       <alpha_stall>1.4</alpha_stall>
       <cla>4.2500</cla>
@@ -740,9 +711,41 @@
       <cma_stall>0.0</cma_stall>
       <area>0.01</area>
       <air_density>1.2041</air_density>
-      <cp>0 0 -0.093</cp>
+      <cp>0  0.093 0</cp> 
       <forward>1 0 0</forward>
-      <upward>0 1 0</upward>
+      <upward>0 0 1</upward>
+      <link_name>rotor_2</link_name>
+    </plugin>
+    <plugin name="rotor_2_blade_2" filename="libLiftDragPlugin.so">
+      <a0>0.3</a0>
+      <alpha_stall>1.4</alpha_stall>
+      <cla>4.2500</cla>
+      <cda>0.10</cda>
+      <cma>0.00</cma>
+      <cla_stall>-0.025</cla_stall>
+      <cda_stall>0.0</cda_stall>
+      <cma_stall>0.0</cma_stall>
+      <area>0.02</area>
+      <air_density>1.2041</air_density>
+       <cp>0 -0.093 0</cp>
+      <forward>-1 0 0</forward>
+      <upward>0 0 1</upward>
+      <link_name>rotor_2</link_name>
+    </plugin>
+<plugin name="rotor_3_blade_1" filename="libLiftDragPlugin.so">
+      <a0>0.3</a0>
+      <alpha_stall>1.4</alpha_stall>
+      <cla>4.2500</cla>
+      <cda>0.10</cda>
+      <cma>0.00</cma>
+      <cla_stall>-0.025</cla_stall>
+      <cda_stall>0.0</cda_stall>
+      <cma_stall>0.0</cma_stall>
+      <area>0.02</area>
+      <air_density>1.2041</air_density>
+      <cp>0  0.093 0</cp>
+      <forward>1 0 0</forward>
+      <upward>0 0 1</upward>
       <link_name>rotor_3</link_name>
     </plugin>
     <plugin name="rotor_3_blade_2" filename="libLiftDragPlugin.so">
@@ -754,14 +757,14 @@
       <cla_stall>-0.025</cla_stall>
       <cda_stall>0.0</cda_stall>
       <cma_stall>0.0</cma_stall>
-      <area>0.01</area>
+      <area>0.02</area>
       <air_density>1.2041</air_density>
-      <cp>0 0 0.093</cp>
+       <cp>0 -0.093 0</cp>
       <forward>-1 0 0</forward>
-      <upward>0 1 0</upward>
+      <upward>0 0 1</upward>
       <link_name>rotor_3</link_name>
     </plugin>
-    <plugin name="arducopter_plugin" filename="libArduPilotPlugin.so">
+ <plugin name="arducopter_plugin" filename="libArduPilotPlugin.so">
       <fdm_addr>127.0.0.1</fdm_addr>
       <fdm_port_in>9002</fdm_port_in>
       <fdm_port_out>9003</fdm_port_out>
@@ -771,24 +774,11 @@
       -->
       <modelXYZToAirplaneXForwardZDown>0 0 0 3.141593 0 0</modelXYZToAirplaneXForwardZDown>
       <gazeboXYZToNED>0 0 0 3.141593 0 0</gazeboXYZToNED>
-      <imuName>gauthali_vtol/imu_link::imu_sensor</imuName>
+      <imuName>gauthali_11/imu_link::imu_sensor</imuName>
       <connectionTimeoutMaxCount>5</connectionTimeoutMaxCount>
       <!-- <control channel="2">
-        <multiplier>1</multiplier>
-        <offset>-0.5</offset>
-        <type>POSITION</type>
-        <p_gain>2.5</p_gain>
-        <i_gain>0</i_gain>
-        <d_gain>0.1</d_gain>
-        <i_max>0</i_max>
-        <i_min>0</i_min>
-        <cmd_max>1</cmd_max>
-        <cmd_min>-1</cmd_min>
-        <jointName>elevator_joint</jointName>
-      </control> -->
-      <control channel="3">
-
-        <multiplier>1000</multiplier>
+        
+        <multiplier>-2000</multiplier>
         <offset>0.2</offset>
         <type>VELOCITY</type>
         <p_gain>0.5</p_gain>
@@ -798,10 +788,10 @@
         <i_min>0</i_min>
         <cmd_max>2.0</cmd_max>
         <cmd_min>0.0</cmd_min>
-        <jointName>rotor_pusher_joint</jointName>
-      </control>
-      <control channel="0">
-        <multiplier>1</multiplier>
+        <jointName>rotor_puller_joint</jointName>
+      </control> -->
+      <!-- <control channel="1">
+        <multiplier>-1</multiplier>
         <offset>-0.5</offset>
         <type>POSITION</type>
         <p_gain>10.0</p_gain>
@@ -811,10 +801,10 @@
         <i_min>0</i_min>
         <cmd_max>2.0</cmd_max>
         <cmd_min>-2.0</cmd_min>
-        <jointName>left_aileron_joint</jointName>
-      </control>
-      <control channel="1">
-        <multiplier>1</multiplier>
+        <jointName>left_elevon_joint</jointName>
+      </control> -->
+      <!-- <control channel="0">
+        <multiplier>-1</multiplier>
         <offset>-0.5</offset>
         <type>POSITION</type>
         <p_gain>10.0</p_gain>
@@ -824,8 +814,8 @@
         <i_min>0</i_min>
         <cmd_max>2.0</cmd_max>
         <cmd_min>-2.0</cmd_min>
-        <jointName>right_aileron_joint</jointName>
-      </control>
+        <jointName>right_elevon_joint</jointName>
+      </control> -->
       <control channel="4">
         <type>VELOCITY</type>
         <offset>0</offset>
@@ -837,7 +827,7 @@
         <cmd_max>2.5</cmd_max>
         <cmd_min>-2.5</cmd_min>
         <jointName>rotor_0_joint</jointName>
-        <multiplier>1000</multiplier>
+        <multiplier>2000</multiplier>
         <!-- <multiplier>1500</multiplier> -->
         <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>
       </control>
@@ -852,7 +842,7 @@
         <cmd_max>2.5</cmd_max>
         <cmd_min>-2.5</cmd_min>
         <jointName>rotor_1_joint</jointName>
-        <multiplier>1000</multiplier>
+        <multiplier>2000</multiplier>
         <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>
       </control>
       <control channel="6">
@@ -866,7 +856,7 @@
         <cmd_max>2.5</cmd_max>
         <cmd_min>-2.5</cmd_min>
         <jointName>rotor_2_joint</jointName>
-        <multiplier>-1000</multiplier>
+        <multiplier>-2000</multiplier>
         <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>
       </control>
       <control channel="7">
@@ -880,9 +870,10 @@
         <cmd_max>2.5</cmd_max>
         <cmd_min>-2.5</cmd_min>
         <jointName>rotor_3_joint</jointName>
-        <multiplier>-1000</multiplier>
+        <multiplier>-2000</multiplier>
         <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>
       </control>
     </plugin>
+
   </model>
 </sdf>
