@@ -111,7 +111,7 @@
       <child>motor_0</child>
       <parent>base_link</parent>
       <axis>
-        <xyz>0 1 0</xyz>
+        <xyz>0 -1 0</xyz>
         <limit>
           <lower>-0.34907</lower>
           <upper>1.5708</upper>
@@ -526,19 +526,7 @@
         <cmd_min>0.0</cmd_min>
         <jointName>rotor_puller_joint</jointName>
       </control> -->
-      <!-- <control channel="1">
-        <multiplier>-1</multiplier>
-        <offset>-0.5</offset>
-        <type>POSITION</type>
-        <p_gain>10.0</p_gain>
-        <i_gain>0</i_gain>
-        <d_gain>0</d_gain>
-        <i_max>0</i_max>
-        <i_min>0</i_min>
-        <cmd_max>2.0</cmd_max>
-        <cmd_min>-2.0</cmd_min>
-        <jointName>left_elevon_joint</jointName>
-      </control> -->
+      
       <!-- <control channel="0">
         <multiplier>-1</multiplier>
         <offset>-0.5</offset>
@@ -552,7 +540,33 @@
         <cmd_min>-2.0</cmd_min>
         <jointName>right_elevon_joint</jointName>
       </control> -->
-      <control channel="4">
+      <control channel="0">
+        <multiplier>-1</multiplier>
+        <offset>-0.5</offset>
+        <type>POSITION</type>
+        <p_gain>10.0</p_gain>
+        <i_gain>0</i_gain>
+        <d_gain>0</d_gain>
+        <i_max>0</i_max>
+        <i_min>0</i_min>
+        <cmd_max>2.0</cmd_max>
+        <cmd_min>-2.0</cmd_min>
+        <jointName>motor_0_joint</jointName>
+      </control>
+      <control channel="1">
+        <multiplier>-1</multiplier>
+        <offset>-0.5</offset>
+        <type>POSITION</type>
+        <p_gain>10.0</p_gain>
+        <i_gain>0</i_gain>
+        <d_gain>0</d_gain>
+        <i_max>0</i_max>
+        <i_min>0</i_min>
+        <cmd_max>2.0</cmd_max>
+        <cmd_min>-2.0</cmd_min>
+        <jointName>motor_2_joint</jointName>
+      </control>
+      <control channel="5">
         <type>VELOCITY</type>
         <offset>0</offset>
         <p_gain>0.20</p_gain>
@@ -567,7 +581,7 @@
         <!-- <multiplier>1500</multiplier> -->
         <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>
       </control>
-      <control channel="5">
+      <control channel="6">
         <type>VELOCITY</type>
         <offset>0</offset>
         <p_gain>0.20</p_gain>
@@ -581,7 +595,7 @@
         <multiplier>838</multiplier>
         <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>
       </control>
-      <control channel="6">
+      <control channel="7">
         <type>VELOCITY</type>
         <offset>0</offset>
         <p_gain>0.20</p_gain>
@@ -595,7 +609,7 @@
         <multiplier>-838</multiplier>
         <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>
       </control>
-      <control channel="7">
+      <control channel="8">
         <type>VELOCITY</type>
         <offset>0</offset>
         <p_gain>0.20</p_gain>
