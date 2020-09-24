@@ -3,15 +3,15 @@
     <link name='base_link'>
       <pose frame=''>0 0 0 0 -0 0</pose>
       <inertial>
-        <pose frame=''>-0.034153 -0 0.003795 0 -0 0</pose>
-        <mass>1.6105</mass>
+        <pose frame=''>0.003197 -0 0.007768 0 -0 0</pose>
+        <mass>1.74981</mass>
         <inertia>
-          <ixx>0.13199</ixx>
-          <ixy>-6.142e-18</ixy>
-          <ixz>0.00024729</ixz>
-          <iyy>0.077457</iyy>
-          <iyz>7.4254e-19</iyz>
-          <izz>0.2093</izz>
+          <ixx>0.147078</ixx>
+          <ixy>-1.04527e-17</ixy>
+          <ixz>-0.00275477</ixz>
+          <iyy>0.106032</iyy>
+          <iyz>3.25879e-19</iyz>
+          <izz>0.25226</izz>
         </inertia>
       </inertial>
       <collision name='base_link_collision'>
@@ -20,6 +20,24 @@
           <mesh>
             <scale>1 1 1</scale>
             <uri>model://h_frame_tilt/meshes/base_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name='base_link_fixed_joint_lump__motor_0_collision_1'>
+        <pose frame=''>0.435 -0.325 0.005 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://h_frame_tilt/meshes/motor_0.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name='base_link_fixed_joint_lump__motor_2_collision_2'>
+        <pose frame=''>0.435 0.325 0.005 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://h_frame_tilt/meshes/motor_2.STL</uri>
           </mesh>
         </geometry>
       </collision>
@@ -32,8 +50,26 @@
           </mesh>
         </geometry>
       </visual>
+      <visual name='base_link_fixed_joint_lump__motor_0_visual_1'>
+        <pose frame=''>0.435 -0.325 0.005 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://h_frame_tilt/meshes/motor_0.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='base_link_fixed_joint_lump__motor_2_visual_2'>
+        <pose frame=''>0.435 0.325 0.005 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://h_frame_tilt/meshes/motor_2.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
     </link>
-    <link name='h_frame_tilt/imu_link'>
+     <link name='h_frame_tilt/imu_link'>
       <inertial>
         <pose>0 0 0 0 0 0</pose>
         <mass>0.15</mass>
@@ -74,57 +110,6 @@
         </ode>
       </physics>
     </joint>
-    <link name='motor_0'>
-      <pose frame=''>0.435 -0.325 0.005 0 -0 0</pose>
-      <inertial>
-        <pose frame=''>0 0 0.048702 0 -0 0</pose>
-        <mass>0.069653</mass>
-        <inertia>
-          <ixx>2.7086e-05</ixx>
-          <ixy>-5.5282e-22</ixy>
-          <ixz>4.1684e-22</ixz>
-          <iyy>1.7498e-05</iyy>
-          <iyz>-7.4714e-21</iyz>
-          <izz>1.2525e-05</izz>
-        </inertia>
-      </inertial>
-      <collision name='motor_0_collision'>
-        <pose frame=''>0 0 0 0 -0 0</pose>
-        <geometry>
-          <mesh>
-            <scale>1 1 1</scale>
-            <uri>model://h_frame_tilt/meshes/motor_0.STL</uri>
-          </mesh>
-        </geometry>
-      </collision>
-      <visual name='motor_0_visual'>
-        <pose frame=''>0 0 0 0 -0 0</pose>
-        <geometry>
-          <mesh>
-            <scale>1 1 1</scale>
-            <uri>model://h_frame_tilt/meshes/motor_0.STL</uri>
-          </mesh>
-        </geometry>
-      </visual>
-    </link>
-    <joint name='motor_0_joint' type='revolute'>
-      <child>motor_0</child>
-      <parent>base_link</parent>
-      <axis>
-        <xyz>0 1 0</xyz>
-        <limit>
-          <lower>-0.017453</lower>
-          <upper>1.5708</upper>
-          <effort>0</effort>
-          <velocity>0</velocity>
-        </limit>
-        <dynamics>
-          <spring_reference>0</spring_reference>
-          <spring_stiffness>0</spring_stiffness>
-        </dynamics>
-        <use_parent_model_frame>1</use_parent_model_frame>
-      </axis>
-    </joint>
     <link name='rotor_0'>
       <pose frame=''>0.435 -0.325 0.052 0 -0 0</pose>
       <inertial>
@@ -160,63 +145,12 @@
     </link>
     <joint name='rotor_0_joint' type='revolute'>
       <child>rotor_0</child>
-      <parent>motor_0</parent>
+      <parent>base_link</parent>
       <axis>
         <xyz>0 0 1</xyz>
         <limit>
           <lower>-1e+16</lower>
           <upper>1e+16</upper>
-        </limit>
-        <dynamics>
-          <spring_reference>0</spring_reference>
-          <spring_stiffness>0</spring_stiffness>
-        </dynamics>
-        <use_parent_model_frame>1</use_parent_model_frame>
-      </axis>
-    </joint>
-    <link name='motor_2'>
-      <pose frame=''>0.435 0.325 0.005 0 -0 0</pose>
-      <inertial>
-        <pose frame=''>0 0 0.048702 0 -0 0</pose>
-        <mass>0.069653</mass>
-        <inertia>
-          <ixx>2.7086e-05</ixx>
-          <ixy>-5.5793e-22</ixy>
-          <ixz>4.1248e-22</ixz>
-          <iyy>1.7498e-05</iyy>
-          <iyz>-6.6645e-21</iyz>
-          <izz>1.2525e-05</izz>
-        </inertia>
-      </inertial>
-      <collision name='motor_2_collision'>
-        <pose frame=''>0 0 0 0 -0 0</pose>
-        <geometry>
-          <mesh>
-            <scale>1 1 1</scale>
-            <uri>model://h_frame_tilt/meshes/motor_2.STL</uri>
-          </mesh>
-        </geometry>
-      </collision>
-      <visual name='motor_2_visual'>
-        <pose frame=''>0 0 0 0 -0 0</pose>
-        <geometry>
-          <mesh>
-            <scale>1 1 1</scale>
-            <uri>model://h_frame_tilt/meshes/motor_2.STL</uri>
-          </mesh>
-        </geometry>
-      </visual>
-    </link>
-    <joint name='motor_2_joint' type='revolute'>
-      <child>motor_2</child>
-      <parent>base_link</parent>
-      <axis>
-        <xyz>0 1 0</xyz>
-        <limit>
-          <lower>-0.017453</lower>
-          <upper>1.5708</upper>
-          <effort>0</effort>
-          <velocity>0</velocity>
         </limit>
         <dynamics>
           <spring_reference>0</spring_reference>
@@ -260,7 +194,7 @@
     </link>
     <joint name='rotor_2_joint' type='revolute'>
       <child>rotor_2</child>
-      <parent>motor_2</parent>
+      <parent>base_link</parent>
       <axis>
         <xyz>0 0 1</xyz>
         <limit>
@@ -540,6 +474,7 @@
         <cmd_min>-2.0</cmd_min>
         <jointName>right_elevon_joint</jointName>
       </control> -->
+      <!--
       <control channel="0">
         <multiplier>-1</multiplier>
         <offset>-0.5</offset>
@@ -565,8 +500,8 @@
         <cmd_max>2.0</cmd_max>
         <cmd_min>-2.0</cmd_min>
         <jointName>motor_2_joint</jointName>
-      </control>
-      <control channel="5">
+      </control> -->
+      <control channel="0">
         <type>VELOCITY</type>
         <offset>0</offset>
         <p_gain>0.20</p_gain>
@@ -578,10 +513,9 @@
         <cmd_min>-2.5</cmd_min>
         <jointName>rotor_0_joint</jointName>
         <multiplier>838</multiplier>
-        <!-- <multiplier>1500</multiplier> -->
         <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>
       </control>
-      <control channel="6">
+      <control channel="1">
         <type>VELOCITY</type>
         <offset>0</offset>
         <p_gain>0.20</p_gain>
@@ -595,7 +529,7 @@
         <multiplier>838</multiplier>
         <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>
       </control>
-      <control channel="7">
+      <control channel="2">
         <type>VELOCITY</type>
         <offset>0</offset>
         <p_gain>0.20</p_gain>
@@ -609,7 +543,7 @@
         <multiplier>-838</multiplier>
         <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>
       </control>
-      <control channel="8">
+      <control channel="3">
         <type>VELOCITY</type>
         <offset>0</offset>
         <p_gain>0.20</p_gain>
