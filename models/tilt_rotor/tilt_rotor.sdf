@@ -1,0 +1,815 @@
+<sdf version='1.6'>
+  <model name='tilt_rotor'>
+    <link name='base_link'>
+      <pose frame=''>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose frame=''>-0.12786 -4e-06 -0.005044 0 -0 0</pose>
+        <mass>0.90187</mass>
+        <inertia>
+          <ixx>0.030602</ixx>
+          <ixy>2.8125e-07</ixy>
+          <ixz>1.3683e-06</ixz>
+          <iyy>0.0068225</iyy>
+          <iyz>-1.3966e-07</iyz>
+          <izz>0.037131</izz>
+        </inertia>
+      </inertial>
+      <collision name='base_link_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://tilt_rotor/meshes/base_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='base_link_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://tilt_rotor/meshes/base_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <link name='aileron_left'>
+      <pose frame=''>-0.16997 0.2 0.005812 0 -0 0</pose>
+      <inertial>
+        <pose frame=''>-0.016756 0.24939 -0.003295 0 -0 0</pose>
+        <mass>0.0038016</mass>
+        <inertia>
+          <ixx>5.068e-05</ixx>
+          <ixy>-1.013e-08</ixy>
+          <ixz>-1.2413e-07</ixz>
+          <iyy>8.3318e-07</iyy>
+          <iyz>3.2875e-09</iyz>
+          <izz>5.1422e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='aileron_left_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://tilt_rotor/meshes/aileron_left.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='aileron_left_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://tilt_rotor/meshes/aileron_left.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='aileron_left_joint' type='revolute'>
+      <child>aileron_left</child>
+      <parent>base_link</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-0.5236</lower>
+          <upper>0.5236</upper>
+         
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>1</implicit_spring_damper>
+        </ode>
+      </physics>
+    </joint>
+    <link name='aileron_right'>
+      <pose frame=''>-0.16997 -0.2 0.005812 0 -0 0</pose>
+      <inertial>
+        <pose frame=''>-0.016759 -0.25061 -0.003282 0 -0 0</pose>
+        <mass>0.0038016</mass>
+        <inertia>
+          <ixx>5.068e-05</ixx>
+          <ixy>-1.0128e-08</ixy>
+          <ixz>-1.2356e-07</ixz>
+          <iyy>8.3318e-07</iyy>
+          <iyz>3.2951e-09</iyz>
+          <izz>5.1423e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='aileron_right_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://tilt_rotor/meshes/aileron_right.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='aileron_right_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://tilt_rotor/meshes/aileron_right.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='aileron_right_joint' type='revolute'>
+      <child>aileron_right</child>
+      <parent>base_link</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-0.5236</lower>
+          <upper>0.5236</upper>
+         
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>1</implicit_spring_damper>
+        </ode>
+      </physics>
+    </joint>
+    <link name='propeller_rear_left'>
+      <pose frame=''>-0.358 0.22486 0.041843 0 -0 0</pose>
+      <inertial>
+        <pose frame=''>-0 0 0.006535 0 -0 0</pose>
+        <mass>0.0054051</mass>
+        <inertia>
+          <ixx>2.1407e-05</ixx>
+          <ixy>2.0834e-06</ixy>
+          <ixz>1.0335e-14</ixz>
+          <iyy>3.3266e-07</iyy>
+          <iyz>1.1359e-14</iyz>
+          <izz>2.1719e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='propeller_rear_left_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://tilt_rotor/meshes/propeller_rear_left.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='propeller_rear_left_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://tilt_rotor/meshes/propeller_rear_left.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='propeller_rear_left_joint' type='revolute'>
+      <child>propeller_rear_left</child>
+      <parent>base_link</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <damping>0.04</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='propeller_rear_right'>
+      <pose frame=''>-0.358 -0.22486 0.041843 0 -0 0</pose>
+      <inertial>
+        <pose frame=''>-0 0 0.006535 0 -0 0</pose>
+        <mass>0.0054054</mass>
+        <inertia>
+          <ixx>2.1608e-05</ixx>
+          <ixy>-3.447e-07</ixy>
+          <ixz>1.1686e-14</ixz>
+          <iyy>1.3421e-07</iyy>
+          <iyz>-9.8143e-15</iyz>
+          <izz>2.1721e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='propeller_rear_right_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://tilt_rotor/meshes/propeller_rear_right.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='propeller_rear_right_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://tilt_rotor/meshes/propeller_rear_right.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='propeller_rear_right_joint' type='revolute'>
+      <child>propeller_rear_right</child>
+      <parent>base_link</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <damping>0.04</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='ruddervator_left'>
+      <pose frame=''>-0.775 0.11193 0.11193 -0.79348 0.12648 -0.1275</pose>
+      <inertial>
+        <pose frame=''>-0.009877 0.010141 -0.001818 0 -0 0</pose>
+        <mass>0.0013457</mass>
+        <inertia>
+          <ixx>8.7475e-06</ixx>
+          <ixy>8.2912e-15</ixy>
+          <ixz>-2.1964e-08</ixz>
+          <iyy>1.3526e-07</iyy>
+          <iyz>-3.8536e-14</iyz>
+          <izz>8.8628e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='ruddervator_left_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://tilt_rotor/meshes/ruddervator_left.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='ruddervator_left_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://tilt_rotor/meshes/ruddervator_left.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='ruddervator_left_joint' type='revolute'>
+      <child>ruddervator_left</child>
+      <parent>base_link</parent>
+      <axis>
+        <xyz>-2e-06 0.707109 -0.707105</xyz>
+        <limit>
+          <lower>-0.5236</lower>
+          <upper>0.5236</upper>
+         
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='ruddervator_right'>
+      <pose frame=''>-0.775 -0.11193 0.11193 0.7854 0.003309 0.003309</pose>
+      <inertial>
+        <pose frame=''>-0.010043 -0.010141 9.2e-05 0 -0 0</pose>
+        <mass>0.0013457</mass>
+        <inertia>
+          <ixx>8.74347e-06</ixx>
+          <ixy>-1.54079e-15</ixy>
+          <ixz>1.13388e-09</ixz>
+          <iyy>1.35259e-07</iyy>
+          <iyz>-3.93914e-14</iyz>
+          <izz>8.86684e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='ruddervator_right_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://tilt_rotor/meshes/ruddervator_right.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='ruddervator_right_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://tilt_rotor/meshes/ruddervator_right.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='ruddervator_right_joint' type='revolute'>
+      <child>ruddervator_right</child>
+      <parent>base_link</parent>
+      <axis>
+        <xyz>-0 0.707109 0.707104</xyz>
+        <limit>
+          <lower>-0.523599</lower>
+          <upper>0.523599</upper>
+         
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='motor_front_left'>
+      <pose frame=''>0.168 0.20986 0.003 0 -0 0</pose>
+      <inertial>
+        <pose frame=''>0 0.015 0.030513 0 -0 0</pose>
+        <mass>0.061036</mass>
+        <inertia>
+          <ixx>8.5593e-06</ixx>
+          <ixy>-3.4497e-22</ixy>
+          <ixz>-9.3615e-23</ixz>
+          <iyy>7.1825e-06</iyy>
+          <iyz>9.892e-21</iyz>
+          <izz>4.223e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='motor_front_left_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://tilt_rotor/meshes/motor_front_left.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='motor_front_left_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://tilt_rotor/meshes/motor_front_left.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='servo_front_left_joint' type='revolute'>
+      <child>motor_front_left</child>
+      <parent>base_link</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-0.017453</lower>
+          <upper>1.5708</upper>
+        </limit>
+        <dynamics>
+          <damping>0.04</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='propeller_front_left'>
+      <pose frame=''>0.168 0.22486 0.041843 0 -0 0</pose>
+      <inertial>
+        <pose frame=''>0 0 0.006535 0 -0 0</pose>
+        <mass>0.0054054</mass>
+        <inertia>
+          <ixx>2.0881e-05</ixx>
+          <ixy>3.8994e-06</ixy>
+          <ixz>-1.3473e-14</ixz>
+          <iyy>8.614e-07</iyy>
+          <iyz>7.6605e-15</iyz>
+          <izz>2.1721e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='propeller_front_left_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://tilt_rotor/meshes/propeller_front_left.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='propeller_front_left_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://tilt_rotor/meshes/propeller_front_left.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='propeller_front_left_joint' type='revolute'>
+      <child>propeller_front_left</child>
+      <parent>motor_front_left</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <damping>0.04</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='motor_front_right'>
+      <pose frame=''>0.168 -0.20986 0.003 0 -0 0</pose>
+      <inertial>
+        <pose frame=''>-0 -0.015 0.030513 0 -0 0</pose>
+        <mass>0.061036</mass>
+        <inertia>
+          <ixx>8.5593e-06</ixx>
+          <ixy>3.1994e-23</ixy>
+          <ixz>3.4129e-22</ixz>
+          <iyy>7.1825e-06</iyy>
+          <iyz>3.6464e-21</iyz>
+          <izz>4.223e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='motor_front_right_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://tilt_rotor/meshes/motor_front_right.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='motor_front_right_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://tilt_rotor/meshes/motor_front_right.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='servo_front_right_joint' type='revolute'>
+      <child>motor_front_right</child>
+      <parent>base_link</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-0.017453</lower>
+          <upper>1.5708</upper>
+        </limit>
+        <dynamics>
+          <damping>0.04</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='propeller_front_right'>
+      <pose frame=''>0.168 -0.22486 0.041843 0 -0 0</pose>
+      <inertial>
+        <pose frame=''>0 0 0.006535 0 -0 0</pose>
+        <mass>0.0054051</mass>
+        <inertia>
+          <ixx>2.1576e-05</ixx>
+          <ixy>-8.7148e-07</ixy>
+          <ixz>-1.1802e-14</ixz>
+          <iyy>1.6408e-07</iyy>
+          <iyz>-9.8278e-15</iyz>
+          <izz>2.1719e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='propeller_front_right_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://tilt_rotor/meshes/propeller_front_right.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='propeller_front_right_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://tilt_rotor/meshes/propeller_front_right.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='propeller_front_right_joint' type='revolute'>
+      <child>propeller_front_right</child>
+      <parent>motor_front_right</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <damping>0.04</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+      <link name='tilt_rotor/imu_link'>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.15</mass>
+        <inertia>
+          <ixx>0.00001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00002</iyy>
+          <iyz>0</iyz>
+          <izz>0.00002</izz>
+        </inertia>
+      </inertial>
+      <sensor name="imu_sensor" type="imu">
+        <pose>0 0 0 3.141593 0 0</pose>
+        <always_on>1</always_on>
+        <update_rate>1000.0</update_rate>
+      </sensor>
+    </link>
+    <joint name='tilt_rotor/imu_joint' type='revolute'>
+      <child>tilt_rotor/imu_link</child>
+      <parent>base_link</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0</upper>
+          <effort>0</effort>
+          <velocity>0</velocity>
+        </limit>
+        <dynamics>
+          <damping>1.0</damping>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>1</implicit_spring_damper>
+        </ode>
+      </physics>
+    </joint>
+     <plugin name="left_wing" filename="libLiftDragPlugin.so">
+      <a0>0.156575426451136</a0>
+      <cla>5.15662015617741</cla>
+      <cda>0.401070456591576</cda>
+      <cma>-1.2</cma>
+      <alpha_stall>0.357288290430484</alpha_stall>
+      <cla_stall>-3.85</cla_stall>
+      <cda_stall>-0.9233984055</cda_stall>
+      <cma_stall>0</cma_stall>
+      <cp>-0.095 0.35 0</cp>
+      <area>0.13</area>
+      <air_density>1.2041</air_density>
+      <forward>1 0 0</forward>
+      <upward>0 0 1</upward>
+      <link_name>base_link</link_name>
+      <control_joint_name>
+        aileron_left_joint
+      </control_joint_name>
+      <control_joint_rad_to_cl>-0.3</control_joint_rad_to_cl>
+    </plugin>
+    <plugin name="right_wing" filename="libLiftDragPlugin.so">
+      <a0>0.156575426451136</a0>
+      <cla>5.15662015617741</cla>
+      <cda>0.401070456591576</cda>
+      <cma>-1.2</cma>
+      <alpha_stall>0.357288290430484</alpha_stall>
+      <cla_stall>-3.85</cla_stall>
+      <cda_stall>-0.9233984055</cda_stall>
+      <cma_stall>0</cma_stall>
+      <cp>-0.095 -0.35 0</cp>
+      <area>0.13</area>
+      <air_density>1.2041</air_density>
+      <forward>1 0 0</forward>
+      <upward>0 0 1</upward>
+      <link_name>base_link</link_name>
+      <control_joint_name>
+        aileron_right_joint
+      </control_joint_name>
+      <control_joint_rad_to_cl>-0.3</control_joint_rad_to_cl>
+    </plugin>
+      <plugin name="left_tail" filename="libLiftDragPlugin.so">
+      <a0>0</a0>
+      <cla>3.10543124960906</cla>
+      <cda>0.269290163711487</cda>
+      <cma>-1.2</cma>
+      <alpha_stall>0.349065850398866</alpha_stall>
+      <cla_stall>-3.85</cla_stall>
+      <cda_stall>-0.9233984055</cda_stall>
+      <cma_stall>0</cma_stall>
+      <cp>-0.68 0.07 0.10</cp>
+      <area>0.035</area>
+      <air_density>1.2041</air_density>
+      <forward>1 0 0</forward>
+      <upward>0 0.707 0.707</upward>
+      <link_name>base_link</link_name>
+      <control_joint_name>
+        ruddervator_left_joint
+      </control_joint_name>
+      <control_joint_rad_to_cl>-4.0</control_joint_rad_to_cl>
+    </plugin>
+    <plugin name="right_tail" filename="libLiftDragPlugin.so">
+      <a0>0</a0>
+      <cla>3.10543124960906</cla>
+      <cda>0.269290163711487</cda>
+      <cma>-1.2</cma>
+      <alpha_stall>0.349065850398866</alpha_stall>
+      <cla_stall>-3.85</cla_stall>
+      <cda_stall>-0.9233984055</cda_stall>
+      <cma_stall>0</cma_stall>
+      <cp>-0.68 -0.07 0.10</cp>
+      <area>0.035</area>
+      <air_density>1.2041</air_density>
+      <forward>1 0 0</forward>
+      <upward>0 -0.707 0.707</upward>
+      <link_name>base_link</link_name>
+      <control_joint_name>
+        ruddervator_right_joint
+      </control_joint_name>
+      <control_joint_rad_to_cl>-4.0</control_joint_rad_to_cl>
+    </plugin>
+     <plugin name="propeller_front_right_blade_1" filename="libLiftDragPlugin.so">
+      <a0>0.3</a0>
+      <alpha_stall>1.4</alpha_stall>
+      <cla>4.2500</cla>
+      <cda>0.10</cda>
+      <cma>0.00</cma>
+      <cla_stall>-0.025</cla_stall>
+      <cda_stall>0.0</cda_stall>
+      <cma_stall>0.0</cma_stall>
+      <area>0.005</area>
+      <air_density>1.2041</air_density>
+       <cp>0 0.063 0</cp>
+      <forward>-1 0 0</forward>
+      <upward>0 0 1</upward>
+      <link_name>propeller_front_right</link_name>
+    </plugin>
+    <plugin name="propeller_front_right_blade_2" filename="libLiftDragPlugin.so">
+      <a0>0.3</a0>
+      <alpha_stall>1.4</alpha_stall>
+      <cla>4.2500</cla>
+      <cda>0.10</cda>
+      <cma>0.00</cma>
+      <cda_stall>0.0</cda_stall>
+      <cla_stall>-0.025</cla_stall>
+      <cma_stall>0.0</cma_stall>
+      <area>0.005</area>
+      <air_density>1.2041</air_density>
+      <cp>0  -0.063 0</cp>
+      <forward>1 0 0</forward>
+      <upward>0 0 1</upward>
+      <link_name>propeller_front_right</link_name>
+   </plugin>
+    <plugin name="propeller_rear_left_blade_1" filename="libLiftDragPlugin.so">
+      <a0>0.3</a0>
+      <alpha_stall>1.4</alpha_stall>
+      <cla>4.2500</cla>
+      <cda>0.10</cda>
+      <cma>0.00</cma>
+      <cla_stall>-0.025</cla_stall>
+      <cda_stall>0.0</cda_stall>
+      <cma_stall>0.0</cma_stall>
+      <area>0.005</area>
+      <air_density>1.2041</air_density>
+       <cp>0 0.063 0</cp>
+      <forward>-1 0 0</forward>
+      <upward>0 0 1</upward>
+      <link_name>propeller_rear_left</link_name>
+    </plugin>
+    <plugin name="propeller_rear_left_blade_2" filename="libLiftDragPlugin.so">
+      <a0>0.3</a0>
+      <alpha_stall>1.4</alpha_stall>
+      <cla>4.2500</cla>
+      <cda>0.10</cda>
+      <cma>0.00</cma>
+      <cda_stall>0.0</cda_stall>
+      <cla_stall>-0.025</cla_stall>
+      <cma_stall>0.0</cma_stall>
+      <area>0.005</area>
+      <air_density>1.2041</air_density>
+      <cp>0  -0.063 0</cp>
+      <forward>1 0 0</forward>
+      <upward>0 0 1</upward>
+      <link_name>propeller_rear_left</link_name>
+   </plugin>
+  <plugin name="propeller_front_left_blade_1" filename="libLiftDragPlugin.so">
+      <a0>0.3</a0>
+      <alpha_stall>1.4</alpha_stall>
+      <cla>4.2500</cla>
+      <cda>0.10</cda>
+      <cma>0.00</cma>
+      <cla_stall>-0.025</cla_stall>
+      <cda_stall>0.0</cda_stall>
+      <cma_stall>0.0</cma_stall>
+      <area>0.005</area>
+      <air_density>1.2041</air_density>
+       <cp>0 0.063 0</cp>
+      <forward>1 0 0</forward>
+      <upward>0 0 1</upward>
+      <link_name>propeller_front_left</link_name>
+    </plugin>
+  <plugin name="propeller_front_left_blade_2" filename="libLiftDragPlugin.so">
+      <a0>0.3</a0>
+      <alpha_stall>1.4</alpha_stall>
+      <cla>4.2500</cla>
+      <cda>0.10</cda>
+      <cma>0.00</cma>
+      <cda_stall>0.0</cda_stall>
+      <cla_stall>-0.025</cla_stall>
+      <cma_stall>0.0</cma_stall>
+      <area>0.005</area>
+      <air_density>1.2041</air_density>
+      <cp>0  -0.063 0</cp>
+      <forward>-1 0 0</forward>
+      <upward>0 0 1</upward>
+      <link_name>propeller_front_left</link_name>
+   </plugin>
+    <plugin name="propeller_rear_right_blade_1" filename="libLiftDragPlugin.so">
+      <a0>0.3</a0>
+      <alpha_stall>1.4</alpha_stall>
+      <cla>4.2500</cla>
+      <cda>0.10</cda>
+      <cma>0.00</cma>
+      <cla_stall>-0.025</cla_stall>
+      <cda_stall>0.0</cda_stall>
+      <cma_stall>0.0</cma_stall>
+      <area>0.005</area>
+      <air_density>1.2041</air_density>
+      <cp>0 0.063 0</cp>
+      <forward>1 0 0</forward>
+      <upward>0 0 1</upward>
+      <link_name>propeller_rear_right</link_name>
+    </plugin>
+    <plugin name="propeller_rear_right_blade_2" filename="libLiftDragPlugin.so">
+      <a0>0.3</a0>
+      <alpha_stall>1.4</alpha_stall>
+      <cla>4.2500</cla>
+      <cda>0.10</cda>
+      <cma>0.00</cma>
+      <cda_stall>0.0</cda_stall>
+      <cla_stall>-0.025</cla_stall>
+      <cma_stall>0.0</cma_stall>
+      <area>0.005</area>
+      <air_density>1.2041</air_density>
+      <cp>0  -0.063 0</cp>
+      <forward>-1 0 0</forward>
+      <upward>0 0 1</upward>
+      <link_name>propeller_rear_right</link_name>
+   </plugin>
+   <plugin name="arducopter_plugin" filename="libArduPilotPlugin.so">
+      <fdm_addr>127.0.0.1</fdm_addr>
+      <fdm_port_in>9002</fdm_port_in>
+      <fdm_port_out>9003</fdm_port_out>
+      <!--
+          Require by APM :
+          Only change model and gazebo from XYZ to XY-Z coordinates
+      -->
+      <modelXYZToAirplaneXForwardZDown>0 0 0 3.141593 0 0</modelXYZToAirplaneXForwardZDown>
+      <gazeboXYZToNED>0 0 0 3.141593 0 0</gazeboXYZToNED>
+      <imuName>tilt_rotor/imu_link::imu_sensor</imuName>
+      <connectionTimeoutMaxCount>5</connectionTimeoutMaxCount>
+   </plugin>
+  </model>
+</sdf>
